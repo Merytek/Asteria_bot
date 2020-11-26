@@ -1,0 +1,10 @@
+{
+  "TOKEN": "token",
+  "PREFIX": "$",
+  "DBCONNECTION": "mongodb://localhost:27017",
+  "DEFAULTSETTINGS": {
+    "prefix": "?",
+    "logChannel": "bot-log",
+    "welcomeMessage": "Welcome {{ user }}"
+  }
+}

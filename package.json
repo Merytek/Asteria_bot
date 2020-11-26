@@ -1,0 +1,17 @@
+{
+  "name": "asteria_bot",
+  "version": "0.0.0",
+  "description": "Asteria_bot",
+  "main": "app.js",
+  "author": {
+    "name": "Aether"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.0",
+    "fs": "0.0.1-security",
+    "humanize-duration": "^3.24.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.15",
+    "snekfetch": "^4.0.4"
+  }
+}
