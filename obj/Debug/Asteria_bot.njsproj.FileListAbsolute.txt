@@ -1,0 +1,3 @@
+C:\Users\desse\source\repos\Asteria_bot\obj\Debug\Asteria_bot.njsprojAssemblyReference.cache
+C:\Users\desse\source\repos\Asteria_bot\obj\Debug\Asteria_bot.njsproj.CoreCompileInputs.cache
+C:\Users\desse\source\repos\Asteria_bot\bin\Microsoft.NodejsTools.WebRole.dll
