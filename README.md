@@ -1,14 +1,14 @@
 # Asteria_bot
 
-**Dépendance utilisé**:
+_Dépendance utilisé:_
 
-_discord.js_
-_mongoose_
-_fs_
-_snekfetch_
-_ytdl-core_
-_humanize-duration_
+***discord.js*** 
+***mongoose***
+***fs*** 
+***snekfetch** 
+***ytdl-core*** 
+***humanize-duration***
 
-__version actuelle du projet__:
+\\version actuelle du projet:\\
 
 [v.0.1.0]
