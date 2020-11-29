@@ -11,4 +11,4 @@ _Dépendance utilisé:_
 
 \\version actuelle du projet:\\
 
-[v.0.1.0]
+[v.0.3.0]
