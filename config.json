@@ -1,10 +1,8 @@
 {
   "TOKEN": "token",
   "PREFIX": "$",
-  "DBCONNECTION": "mongodb://localhost:27017",
+  "DBCONNECTION": "mongodb+srv://gcknroot:<password>@cluster0.hbml0.mongodb.net/<dbname>?retryWrites=true&w=majority",
   "DEFAULTSETTINGS": {
-    "prefix": "?",
-    "logChannel": "bot-log",
-    "welcomeMessage": "Welcome {{ user }}"
+    "prefix": "$"
   }
 }

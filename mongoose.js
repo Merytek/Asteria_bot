@@ -16,6 +16,6 @@ module.exports = {
         }
         mongoose.connect(DBCONNECTION, mongOption);
         mongoose.Promise = global.Promise;
-        mongoose.connection.on("connected", () => console.log("mongoose est connectÈ"));
+        mongoose.connection.on("connected", () => console.log("mongoose est connect√©"));
     }
 }
