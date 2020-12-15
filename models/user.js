@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema({
     level: {
         "type": Number,
         "default": 0
+    },
+    requis: {
+        "type": Number,
+        "default": 25
     }
 });
 
