@@ -115,7 +115,7 @@ _explication des commandes_:
 
 **rp**
 
-voici la liste et l'explication des commandes [rp](https://github.com/Merytek/Asteria_bot/tree/main/command/rp)
+voici la liste et l'explication des commandes [rp](https://github.com/Merytek/Asteria_bot/tree/main/command/rp.js)
 
 _liste des commandes_:
 
@@ -158,16 +158,18 @@ _explication des commandes_:
 - [v.0.2.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.2.0)
 - [v.0.3.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.3.0)
 - [v.0.4.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.4.0)
+- [v.0.5.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.5.0)
 
 **version actuelle**:
 
-version actuelle du projet: [v.0.5.0]
+version actuelle du projet: [v.0.6.0]
 
 ***projet:***
 
-- [] Créer le système d'économie
+- [ ] Créer le système d'économie
 - [x] Créer le système d'Xp
-- [] Ajouter une commande de classement d'Xp
-- [] Ajouter un système de webhooks dans les commandes Rp
-- [] Ajouter la commande Unban
-- [] Faire un système d'auto-rôle par réaction
+- [ ] Ajouter une commande de classement d'Xp
+- [ ] Ajouter un système de webhooks dans les commandes Rp
+- [ ] Ajouter la commande Unban
+- [ ] Faire un système d'auto-rôle par réaction
+- [x] Ajouter la prise en charge des Alias

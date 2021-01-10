@@ -7,16 +7,18 @@ module.exports.run = (Root, message, args) => {
             let reason = args.slice(1).join(" ");
             let role = message.guild.roles.cache.find(r => r.id === "781160921070043156");
             if (!Mention) {
-                message.reply(`${message.author} il faut mentionner quelqu'un`)
+                message.reply(`${message.author} il faut mentionner quelqu'un`).catch(error);
             } else {
                 if (Mention && reason) {
-                    Mention.roles.add(role);
+                    Mention.roles.add(role).catch(error);
                     message.channel.send(`${message.author} a mute ${Mention.user.username} pour: **${reason}**`)
+                    .catch(error);
                 } else {
                     if (Mention && !reason) {
                         reason = "son trop grand nombre d'infraction";
-                        Mention.roles.add(role);
+                        Mention.roles.add(role).catch(error);
                         message.channel.send(`${message.author} a mute ${Mention.user.username} pour: **${reason}**`)
+                        .catch(error);
                     }
                 }
             }
@@ -27,5 +29,8 @@ module.exports.run = (Root, message, args) => {
 
 module.exports.help = {
     name: 'mute',
-    description: 'permet aux modérateur de mute les éléments perturbateur !',
+    alias: null,
+    description: 'permet aux modÃ©rateur de mute les Ã©lÃ©ments perturbateur !',
+    usage: "$mute <user> [reason]",
+    permission: "MANAGE_MEMBER" && "MANAGE_ROLE"
 };

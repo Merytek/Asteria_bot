@@ -30,5 +30,8 @@ module.exports.run = async (Root, message, args) => {
 
 module.exports.help = {
     name: 'slap',
+    alias: null,
     description: 'permet de baffer des gens du serveur !',
+    usage: "$slap [user]",
+    permission: null
 };

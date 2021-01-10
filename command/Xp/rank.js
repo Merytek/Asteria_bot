@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
-
-module.exports.run = async (Root, message, args, dbUser) => {
+const { error } = require("console");
+module.exports.run = (Root, message, args, dbUser) => {
 
     const UserRank = new MessageEmbed()
 
@@ -9,10 +9,13 @@ module.exports.run = async (Root, message, args, dbUser) => {
         .setDescription(`${message.author.username} est au niveau ${dbUser.level}\n${dbUser.experience}/${dbUser.requis}`)
 
     message.channel.send(UserRank)
+    .catch(error);
 
 }
 
 module.exports.help = {
     name: "rank",
-    description: "Permet de voir le nombre d'Xp d'un utilisateur"
+    alias: null,
+    description: "Permet de voir le nombre d'Xp d'un utilisateur",
+    permission: null
 }

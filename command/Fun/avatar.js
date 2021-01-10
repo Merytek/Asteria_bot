@@ -28,5 +28,8 @@ module.exports.run = (Root, message, args) => {
 
 module.exports.help = {
     name: 'avatar',
+    alias: "pp",
     description: 'permet de voir ta pp ou la pp de n\'importe qui sur le serveur',
+    usage: "$avatar [user]",
+    permission: null
 };

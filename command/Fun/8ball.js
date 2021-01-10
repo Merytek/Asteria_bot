@@ -19,5 +19,8 @@ module.exports.run = (Root, message, args) => {
 
 module.exports.help = {
     name: "8ball",
-    description: "Cette commande permet de connaitre son avenir en questionnant le bot"
+    alias: null,
+    description: "Cette commande permet de connaitre son avenir en questionnant le bot",
+    usage: "$8ball <question>",
+    permission: null
 }

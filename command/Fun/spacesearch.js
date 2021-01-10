@@ -44,5 +44,8 @@ module.exports.run = async (Root, message, args) => {
 
 module.exports.help = {
     name: "spacesearch",
-    description: "une commande pour obtenir des informations sur l'astronomie"
+    alias: "spsr",
+    description: "une commande pour obtenir des informations sur l'astronomie",
+    usage: "$spacesearch <keyword>" || "$spsr <keyword>",
+    permission: null
 }

@@ -30,5 +30,8 @@ module.exports.run = async (Root, message, args) => {
 
 module.exports.help = {
     name: "cofee",
+    alias: null,
     description: "permet de se faire un petit café ou d'en offrir un aux membre du serveur !",
+    usage: "$cofee [user]",
+    permission: null
 };

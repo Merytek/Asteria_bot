@@ -1,22 +1,22 @@
-module.exports.run = (Root, message, args) => {
-    function clean(text) {
+module.exports.run = async (Root, message, args) => {
+    function clean (text) {
         if (typeof text === "string") {
-            return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-            return text
+            return text.replace(/`/g, "`" + String.fromCharCode(8203))
+            .replace(/@/g, "@" + String.fromCharCode(8203));
         }
-
-        if (message.author.id !== "422848361062858752") return;
-        const evaled = eval(code);
-        const cleancode = clean(evaled);
-        message.channel.send(cleancode, { code: "js" });
-
+        return text;
     }
-
+    if (message.author.id != "422848361062858752") return
     const code = args.join(" ");
-    clean(code)
+    const evaled = eval(code);
+    const cleanCode = await clean(evaled);
+    message.channel.send(cleanCode, { code: 'js' });
 }
 
 module.exports.help = {
     name: 'eval',
-    description: 'renvoie un code JS testé',
+    alias: null,
+    description: 'permet d\'exÃ©cuter du JS sur le serveur',
+    usage: "$eval <Client.emit(\"eventName\", arguments)>",
+    permission: "ADMINISTRATOR"
 };

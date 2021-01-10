@@ -30,5 +30,8 @@ module.exports.run = async (Root, message, args) => {
 
 module.exports.help = {
     name: 'dance',
+    alias: null,
     description: 'permet de dancer avec les gens du serveur !',
+    usage: "$dance [user]",
+    permission: null
 };
