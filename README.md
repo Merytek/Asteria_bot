@@ -155,9 +155,9 @@ _explication des commandes_:
 **ancienne version**:
 
 - [v.0.1.0](https://github.com/Merytek/Asteria_bot/releases/tag/v.0.1.0)
-- [v.0.2.0](https://github.com/Merytek/Asteria_bot/releases/tag/v.0.2.0)
-- [v.0.3.0](https://github.com/Merytek/Asteria_bot/releases/tag/v.0.3.0)
-- [v.0.4.0](https://github.com/Merytek/Asteria_bot/releases/tag/v.0.4.0)
+- [v.0.2.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.2.0)
+- [v.0.3.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.3.0)
+- [v.0.4.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.4.0)
 
 **version actuelle**:
 
