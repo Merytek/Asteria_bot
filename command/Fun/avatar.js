@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js"); 
-
+const { error } = require("console");
 module.exports.run = (Root, message, args) => {
     const mention = message.mentions.members.first();
 
@@ -11,6 +11,7 @@ module.exports.run = (Root, message, args) => {
             .setImage(message.author.displayAvatarURL())
 
         message.channel.send(Avatar)
+        .catch(error);
     } else {
         if (mention) {
             const AvatarMention = new MessageEmbed()
@@ -20,6 +21,7 @@ module.exports.run = (Root, message, args) => {
                 .setImage(mention.user.displayAvatarURL())
 
             message.channel.send(AvatarMention)
+            .catch(error);
         }
     }
 }

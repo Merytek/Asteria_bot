@@ -1,7 +1,9 @@
-﻿module.exports.run = (Root, message, args) => {
+﻿const {error} = require("console");
+
+module.exports.run = (Root, message, args) => {
     const jokeList = [
         "qu'est-ce qu'une dent dans un verre d'eau ? ||une solution molaire||",
-        "(2A.B)/(2π.R²)",
+        "(2AB)/(2π.R²)",
         "qu'est-ce qu'une douche sans eau ? ||une duche||",
         "qu'est-ce qu'un ours polaire qui change de coordonné ? ||un ours cartésien||",
         "est-ce que tu connais le fruit préféré de Donald Trump ? ||c'est les mûrs||",
@@ -18,7 +20,8 @@
 
     let choosenJoke = jokeList[(Math.floor(Math.random() * jokeList.length))];
 
-    message.channel.send(choosenJoke);
+    message.channel.send(choosenJoke)
+    .catch(error);
 
 }
 
