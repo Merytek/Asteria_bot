@@ -23,21 +23,21 @@ voici la liste et l'explication des commandes [Fun](https://github.com/Merytek/A
 
 _liste des commandes_:
 
-- [8ball](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/8ball)
-- [avatar](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/avatar)
-- [cofee](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/cofee)
-- [dance](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/dance)
-- [hug](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/hug)
-- [iss](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/iss)
-- [joke](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/joke)
-- [kiss](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/kiss)
-- [lovecalc](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/lovecalc)
-- [punch](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/punch)
-- [say](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/say)
-- [shoot](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/shoot)
-- [slap](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/slap)
-- [spacesearch](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/spacesearch)
-- [wasted](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/wasted)
+- [8ball](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/8ball.js)
+- [avatar](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/avatar.js)
+- [cofee](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/cofee.js)
+- [dance](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/dance.js)
+- [hug](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/hug.js)
+- [iss](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/iss.js)
+- [joke](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/joke.js)
+- [kiss](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/kiss.js)
+- [lovecalc](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/lovecalc.js)
+- [punch](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/punch.js)
+- [say](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/say.js)
+- [shoot](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/shoot.js)
+- [slap](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/slap.js)
+- [spacesearch](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/spacesearch.js)
+- [wasted](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/wasted.js)
 
 _explication des commandes_:
 
@@ -77,9 +77,9 @@ voici la liste et l'explication des commandes [Misc](https://github.com/Merytek/
 
 _liste des commandes_:
 
-- [ping](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/ping)
-- [source](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/source)
-- [suggestion](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/suggestion)
+- [ping](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/ping.js)
+- [source](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/source.js)
+- [suggestion](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/suggestion.js)
 
 _explication des commandes_:
 
@@ -95,11 +95,11 @@ voici la liste et l'explication des commandes [Mod](https://github.com/Merytek/A
 
 _liste des commandes_:
 
-- [ban](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/ban)
-- [kick](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/kick)
-- [mute](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/mute)
-- [purge](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/purge)
-- [unmute](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/unmute)
+- [ban](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/ban.js)
+- [kick](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/kick.js)
+- [mute](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/mute.js)
+- [purge](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/purge.js)
+- [unmute](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/unmute.js)
 
 _explication des commandes_:
 
@@ -119,8 +119,8 @@ voici la liste et l'explication des commandes [rp](https://github.com/Merytek/As
 
 _liste des commandes_:
 
-- [letter](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/letter)
-- [roll](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/roll)
+- [letter](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/letter.js)
+- [roll](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/roll.js)
 
 _explication des commandes_:
 
@@ -134,7 +134,7 @@ voici la liste et l'explication des commandes [Xp](https://github.com/Merytek/As
 
 _liste des commandes_:
 
-- [rank](https://github.com/Merytek/Asteria_bot/tree/main/command/Xp/rank)
+- [rank](https://github.com/Merytek/Asteria_bot/tree/main/command/Xp/rank.js)
 
 _explication des commandes_:
 
