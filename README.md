@@ -173,3 +173,4 @@ version actuelle du projet: [v.0.6.0]
 - [ ] Ajouter la commande Unban
 - [ ] Faire un système d'auto-rôle par réaction
 - [x] Ajouter la prise en charge des Alias
+- [ ] Faire la commande help
