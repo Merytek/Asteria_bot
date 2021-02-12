@@ -5,7 +5,7 @@ module.exports.run = (Root, message, args) => {
         const deleteCount = parseInt(args[0]);
 
         if (!deleteCount || deleteCount < 2 || deleteCount > 100)
-            return message.reply("il faut que le nombre soit compris entre 2 et 100 pour supprimer les messages")
+            return message.reply("il faut que le nombre soit comprit entre 2 et 100 pour supprimer les messages")
             .catch(error);
             message.channel.bulkDelete(deleteCount)
     } else {
@@ -18,7 +18,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'purge',
     alias: null,
-    description: 'permet aux modo de supprimer les messages dans les channels pour garder un serveur propre',
+    description: 'permet aux modos de supprimer les messages dans les channels pour garder un serveur propre',
     usage: "$purge <int>",
     permission: "MANAGE_MESSAGE"
 };
