@@ -10,7 +10,7 @@ module.exports.run = (Root, message, args) => {
             Mention.roles.remove(role);
         } else {
             if (Mention || isMuted) {
-                message.reply(`je ne peux pas unmute la personne voulu veuillez vérifier si elle est mute ou si vous avez mentionné quelqu'un`)
+                message.reply(`je ne peux pas unmute la personne voulue, veuillez vérifier si elle est mute ou si vous avez mentionné quelqu'un`)
                 .catch(error);
             }
         }
@@ -25,7 +25,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'unmute',
     alias: null,
-    description: 'permet aux modérateur de vous unmute',
+    description: 'permet aux modérateurs de vous unmute',
     usage: "$unmute",
     permission: "MANAGE_MEMBER" && "MANAGE_ROLE"
 };
