@@ -19,7 +19,7 @@ module.exports.run = async (Root, message, args) => {
             const HugEmbed = new MessageEmbed()
 
                 .setColor("#009A1C")
-                .setTitle(`${message.author.username} se fait un câlin à lui même`)
+                .setTitle(`${message.author.username} se fait un câlin à lui-même, donnez lui de l'amour`)
                 .setImage(gif)
 
             message.channel.send(HugEmbed)
