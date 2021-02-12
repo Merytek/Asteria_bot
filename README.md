@@ -1,7 +1,7 @@
 # Asteria bot
 ### Description du Bot
 
-Ce bot a été créé pour **mon serveur** qui est lui aussi en cours de build il possède plusieurs commande de la simple commande "fun" à la commande "Admin" il est développé en Full JS via l'API [Discord.js](https://discord.js.org/#/) j'essaye d'ajouter des commandes régulièrement comme vous l'avez remarqué ou non le bot est sous la license ***MIT*** de ce fait vous avez le droit de vous resservir des commandes des fichiers etc tant que vous me citez dans votre README.
+Ce bot a été créé pour **mon serveur**, qui est lui aussi en cours de build. Il possède plusieurs commandes, de la simple commande "fun" à la commande "Admin". Il est développé en Full JS via l'API [Discord.js](https://discord.js.org/#/) j'essaye d'ajouter des commandes régulièrement comme vous l'avez remarqué ou non. Le bot est sous la license ***MIT*** de ce fait vous avez le droit de vous resservir des commandes des fichiers etc tant que vous me citez dans votre README.
 
 ### Description des commandes
 
@@ -15,7 +15,7 @@ _liste des commandes_:
 
 _explication des commandes_:
 
-eval: cette commande permet de simuler du JS depuis le serveur cette commande ne peut être utilisé que par moi elle me permet par exemple de tester les events elle s'utilise comme ceci => `$eval <Client.emit("eventName", arguments)>`
+eval: cette commande permet de simuler du JS depuis le serveur, elle ne peut être utilisé que par moi, elle me permet par exemple de tester les events. Elle s'utilise comme ceci => `$eval <Client.emit("eventName", arguments)>`
 
 **Fun**:
 
@@ -41,35 +41,35 @@ _liste des commandes_:
 
 _explication des commandes_:
 
-**8ball**: cette commande est une commande aléatoire qui permet d'avoir une réponse à une question fermé elle est utilisable par tout le monde et s'utilise comme ceci => `$8ball <question>`
+**8ball**: cette commande est aléatoire, elle permet d'avoir une réponse à une question fermée, elle est utilisable par tout le monde => `$8ball <question>`
 
-**avatar**: cette commande est une commande simple qui permet de voir la pp de n'importe quelle utilisateur sur le serveur s'il est mentionné sinon se sera la pp de l'utilisateur de la commande qui sera renvoyé elle s'utilise comme ceci => `$avatar [user]`
+**avatar**: Une simple, permet de voir la pp de n'importe quel utilisateur sur le serveur, s'il est mentionné, sinon ce sera la pp de l'utilisateur de la commande qui sera renvoyée. => `$avatar [user]`
 
-**cofee**: cette commande est une commande assez random qui permet de donner un café à un utilisateur **mentionné** s'il n'y a pas de mention l'utilisateur ayant lancé la commande aura un messsage personnalisé disant qu'il se sert un café cette commande s'utilise comme ceci => `$cofee [user]`
+**coffee**: Assez random et permet de donner un café à un utilisateur **mentionné**. S'il n'y a pas de mention, l'utilisateur ayant lancé la commande aura un messsage personnalisé disant qu'il se sert un café. => `$coffee [user]`
 
-**dance**: cette commande une fois utilisé enverra un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) si un utilisateur est mentionné il y aura un certain message qui sera changé si vous vous mentionnez vous même ou que vous ne mettez pas de mention elle s'utilise donc simplement comme ceci => `$dance [user]`
+**dance**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup). Si un utilisateur est mentionné, il y aura un certain message, qui sera changé si vous vous mentionnez vous-même ou que vous ne mettez pas de mention. Cette réaction s'effectuera également avec les autres commandes citées ci-dessous. => `$dance [user]`
 
-**hug**: cette commande une fois utilisé enverra un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) là aussi comme la commande **dance** si un utilisateur est mentionné il y aura un certain message qui sera changé si vous vous mentionnez vous même ou que vous ne mettez pas de mention elle s'utilise donc simplement comme ceci => `$hug [user]`
+**hug**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) => `$hug [user]`
 
-**iss**: cette commande se connecte à une [API](https://wheretheiss.at/w/developer) et renvoie les informations de position de l'ISS en temps réel la commande s'utilise simplement comme ceci => `$iss`
+**iss**: Se connecte à une [API](https://wheretheiss.at/w/developer) et renvoie les informations de position de l'ISS en temps réel. => `$iss`
 
-**joke**: cette commande une fois utilisé enverra une blague random venant d'un array les blagues sont plus ou moins drôle je ne suis pas un expert dans le milieu de la blague. La commande s'utilise simplement comme ceci => `$joke`
+**joke**: Envoie une blague random venant d'un array. Elles sont plus ou moins drôles, je ne suis pas un expert dans le milieu du comique. => `$joke`
 
-**kiss**: cette commande une fois utilisé enverra un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) là aussi comme la commande **dance** si un utilisateur est mentionné il y aura un certain message qui sera changé si vous vous mentionnez vous même ou que vous ne mettez pas de mention elle s'utilise donc simplement comme ceci => `$kiss [user]`
+**kiss**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup). => `$kiss [user]`
 
-**lovecalc**: cette commande permet de calculer le taux d'amour entre 2 personnes il existe des bornes dans le programme si vous tombez dans ces bornes vous avez un certain message l'utilisation de la commande s'utilise comme ceci => `$lovecalc <first_args> <second_args>`
+**lovecalc**: Calcule le taux d'amour entre 2 personnes. Il existe des bornes dans le programme, si vous tombez dedans, vous avez un certain message. => `$lovecalc <first_args> <second_args>`
 
-**punch**: cette commande une fois utilisé enverra un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) là aussi comme la commande **dance** si un utilisateur est mentionné il y aura un certain message qui sera changé si vous vous mentionnez vous même ou que vous ne mettez pas de mention elle s'utilise donc simplement comme ceci => `$punch [user]`
+**punch**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) => `$punch [user]`
 
-**say**: cette commande est une commande basique qui fera que le bot répétera votre message en le supprimant elle s'utilise comme ceci => `$say <message>`
+**say**: Une basique qui fera que le bot répétera votre message en le supprimant. => `$say <message>`
 
-**shoot**: cette commande une fois utilisé enverra un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) là aussi comme la commande **dance** si un utilisateur est mentionné il y aura un certain message qui sera changé si vous vous mentionnez vous même ou que vous ne mettez pas de mention elle s'utilise donc simplement comme ceci => `$shoot [user]`
+**shoot**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) => `$shoot [user]`
 
-**slap**: cette commande une fois utilisé enverra un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) là aussi comme la commande **dance** si un utilisateur est mentionné il y aura un certain message qui sera changé si vous vous mentionnez vous même ou que vous ne mettez pas de mention elle s'utilise donc simplement comme ceci => `$slap [user]`
+**slap**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) => `$slap [user]`
 
-**spacesearch**: cette commande est une commande qui va chercher sur l'API de la [NASA](https://api.nasa.gov/) des articles avec le Keyword demandé dans la commande ensuite cette article est renvoyé dans le serveur sous la forme d'un Embed la commande s'utilise comme ceci => `$spacesearch <keyword>`
+**spacesearch**: Va chercher sur l'API de la [NASA](https://api.nasa.gov/) des articles avec le Keyword demandé, ensuite cet article est renvoyé dans le serveur sous la forme d'un Embed. => `$spacesearch <keyword>`
 
-**wasted**: cette commande une fois utilisé enverra un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) là aussi comme la commande **dance** si un utilisateur est mentionné il y aura un certain message qui sera changé si vous vous mentionnez vous même ou que vous ne mettez pas de mention elle s'utilise donc simplement comme ceci => `$wasted [user]`
+**wasted**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) => `$wasted [user]`
 
 **Misc**
 
@@ -83,11 +83,11 @@ _liste des commandes_:
 
 _explication des commandes_:
 
-**ping**: permet d'obtenir les latences entre l'utilisateur et le bot la commande s'utilise simplement comme ceci => `$ping`
+**ping**: permet d'obtenir les latences entre l'utilisateur et le bot. => `$ping`
 
-**source**: cette commande simple redirige vers le repo du bot elle s'utilise simplement comme ceci => `$source`
+**source**: redirige vers le repo du bot.  => `$source`
 
-**suggestion**: cette commande permet de faire une suggestion au serveur cette commande est faisable uniquement dans un certain salon puis est envoyé dans un autre salon précis la commande s'utilise comme ceci => `$suggest <suggestion>`
+**suggestion**: permet de faire une suggestion au serveur. Faisable uniquement dans un certain salon puis est envoyée dans un autre plus précis => `$suggest <suggestion>`
 
 **Mod**
 
@@ -103,15 +103,15 @@ _liste des commandes_:
 
 _explication des commandes_:
 
-**ban**: cette commande permet de simplement bannir un utilisateur du serveur avec ou sans raison s'il n'y en a pas de donner une raison "par défaut" est utilisé elle s'utilise comme ceci => `$ban <user> [reason]`
+**ban**: Bannir un utilisateur du serveur avec ou sans raison, s'il n'y en a pas de donnée, une raison "par défaut" est utilisée, pareil pour les autres. => `$ban <user> [reason]`
 
-**kick**: cette commande permet de simplement kick un utilisateur du serveur avec ou sans raison s'il n'y en a pas de donner une raison "par défaut" est utilisé elle s'utilise comme ceci => `$kick <user> [reason]`
+**kick**: Kick un utilisateur du serveur => `$kick <user> [reason]`
 
-**mute**: cette commande permet de simplement mute un utilisateur sur le serveur en lui ajoutant un rôle **muted** comme les commandes au dessus s'il n'y a pas de raison de donné une raison "par défaut" est utilisé la commande s'utilise comme ceci => `$mute <user> [reason]`
+**mute**: Mute un utilisateur sur le serveur en lui ajoutant un rôle **muted** => `$mute <user> [reason]`
 
-**purge**: cette commande permet de clear les messages d'un salon elle est capable de supprimer entre 2 et 100 messages d'un coup elle la syntaxe de la commande est la suivante => `$purge <int>`
+**purge**: Clear les messages d'un salon, capable de supprimer entre 2 et 100 messages d'un coup => `$purge <int>`
 
-**unmute**: cette commande permet d'unmute un utilisateur en lui retirant le rôle **muted** cette commande ne nécessite pas de raison pour être utilisé et elle s'utilise comme ceci => `$unmute <user>`
+**unmute**: Unmute un utilisateur en lui retirant le rôle **muted** et ne nécessite pas de raison pour être utilisée. => `$unmute <user>`
 
 **rp**
 
@@ -124,9 +124,9 @@ _liste des commandes_:
 
 _explication des commandes_:
 
-**letter**: cette commande permet d'envoyer une lettre secrète à un utilisateur pour le côté Rp la lettre peut être ignoré ou non car la lettre secrète sera reçu par un Mp du bot. la commande s'utilise comme ceci => `$letter <user> <message>`
+**letter**: Envoye une lettre secrète à un utilisateur pour le côté Rp. Elle peut être ignorée ou non, car reçu en Mp du bot => `$letter <user> <message>`
 
-**roll**: cette commande est une simple commande de tire de dés qui s'utilise comme ceci => `$roll <int>`
+**roll**: Lancé de dés => `$roll <int>`
 
 **Xp**
 
@@ -138,7 +138,7 @@ _liste des commandes_:
 
 _explication des commandes_:
 
-**rank**: cette commandes permet de visionner son Xp ou celui de quelqu'un d'autre s'il est mentionné elle s'utilise comme ceci => `$rank [user]`
+**rank**: Permet de visionner son Xp ou celui de quelqu'un d'autre s'il est mentionné => `$rank <user>`
 
 ### Dépendances Utilisé
 
@@ -150,7 +150,7 @@ _explication des commandes_:
 - humanize-duration
 - moment
 
-### Autre Information 
+### Autres Informations 
 
 **ancienne version**:
 
