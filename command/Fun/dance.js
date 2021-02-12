@@ -10,7 +10,7 @@ module.exports.run = async (Root, message, args) => {
         const danceEmbed = new MessageEmbed()
 
             .setColor("#009A1C")
-            .setTitle(`${message.author.username} dance avec ${Members.user.username}`)
+            .setTitle(`${message.author.username} danse avec ${Members.user.username}`)
             .setImage(gif)
 
         message.channel.send(danceEmbed).catch(error);
@@ -31,7 +31,7 @@ module.exports.run = async (Root, message, args) => {
 module.exports.help = {
     name: 'dance',
     alias: null,
-    description: 'permet de dancer avec les gens du serveur !',
+    description: 'permet de danser avec les gens du serveur !',
     usage: "$dance [user]",
     permission: null
 };
