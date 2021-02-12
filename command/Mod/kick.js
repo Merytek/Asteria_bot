@@ -1,7 +1,7 @@
 ﻿const { error } = require("console");
 module.exports.run = (Root, message, args) => {
     if (!message.member.hasPermission('KICK_MEMBERS', true))
-        return message.reply("gros t'as trop cru que j'allais t'écoucher...clochard !")
+        return message.reply("gros t'as trop cru que j'allais t'écouter...clochard !")
         .catch(error);
 
     let Member = message.mentions.members.first();
@@ -9,7 +9,7 @@ module.exports.run = (Root, message, args) => {
         return mesage.reply(`je ne peux pas Kick ${Member.user.username} c'est mon papa :)`)
         .catch(error);;
     let reason = args.slice(1).join(" ");
-    if (!reason) reason = `${Member.user.username} a été Kick à cause de son trop gros nombre d'infraction`;
+    if (!reason) reason = `${Member.user.username} a été Kick à cause de son trop gros nombre d'infractions`;
 
     Member.kick(reason)
         .catch(error => message.channel.send(`désolé ${message.author} je ne peux pas kick ${Member.user.username} car ${error}`));
