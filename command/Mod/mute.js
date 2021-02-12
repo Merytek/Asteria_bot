@@ -1,6 +1,6 @@
 module.exports.run = (Root, message, args) => {
     if (!message.member.hasPermission("MANAGE_MEMBER", true)) {
-        message.reply("ptdr mais t'es trop con tu pensais le mute sans les droits")
+        message.reply("Ptdr ! Mais t'es trop con, tu pensais le mute sans les droits")
     } else {
         if (message.member.hasPermission("MANAGE_MEMBER", true)) {
             let Mention = message.mentions.members.first();
@@ -30,7 +30,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'mute',
     alias: null,
-    description: 'permet aux modérateur de mute les éléments perturbateur !',
+    description: 'permet aux modérateurs de mute les éléments perturbateurs !',
     usage: "$mute <user> [reason]",
     permission: "MANAGE_MEMBER" && "MANAGE_ROLE"
 };
