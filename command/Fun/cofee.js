@@ -7,7 +7,7 @@ module.exports.run = async (Root, message, args) => {
 
             .setColor("#EE12AC")
             .setTitle(`un café est offert à ${Mention.user.username}`)
-            .setDescription(`${Mention.user.username} ${message.author.username} t'as offert un café alors déguste le en le remerciant^^`)
+            .setDescription(`${Mention.user.username} ${message.author.username} t'as offert un café, alors déguste-le pour le remercier^^`)
             .setThumbnail("https://media.giphy.com/media/3ohze2v9DClNU2Cdl6/source.gif")
             .setImage("https://media.giphy.com/media/3jVT4U5bilspG/source.gif")
 
@@ -31,7 +31,7 @@ module.exports.run = async (Root, message, args) => {
 module.exports.help = {
     name: "cofee",
     alias: null,
-    description: "permet de se faire un petit café ou d'en offrir un aux membre du serveur !",
+    description: "permet de se faire un petit café ou d'en offrir un aux membres du serveur !",
     usage: "$cofee [user]",
     permission: null
 };
