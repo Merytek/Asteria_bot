@@ -7,25 +7,25 @@ module.exports.run = (Root, message, args) => {
     let FirstPeople = args[0];
     let SecondPeople = args[1];
 
-    const messageTemplate = `le taux d'amour entre ${FirstPeople} et ${SecondPeople} est de ${loveRate}%`;
+    const messageTemplate = `Le taux d'amour entre ${FirstPeople} et ${SecondPeople} est de ${loveRate}%`;
 
     if (loveRate >= 1 && loveRate < 20) {
-        message.channel.send(`${messageTemplate} C'est bien faible il faudrait essayer de trouver quelqu'un d'autre`)
+        message.channel.send(`${messageTemplate} C'est bien faible, il faudrait essayer de trouver quelqu'un d'autre`)
         .catch(error)
     }
 
     if (loveRate >= 20 && loveRate < 30) {
-        message.channel.send(`${messageTemplate} C'est mieux mais ça reste un amour fragile`)
+        message.channel.send(`${messageTemplate} C'est mieux, mais ça reste un amour fragile`)
         .catch(error)
     }
 
     if (loveRate >= 30 && loveRate < 50) {
-        message.channel.send(`${messageTemplate} C'est un jeune amour que voilà il faut faire attention à ne pas étouffer le feu de la passion ^^`)
+        message.channel.send(`${messageTemplate} C'est un jeune amour que voilà, il faut faire attention à ne pas étouffer le feu de la passion ^^`)
         .catch(error)
     }
 
     if (loveRate >= 50 && loveRate < 60) {
-        message.channel.send(`${messageTemplate} C'est un amour sincère qui va durer on l'espère`)
+        message.channel.send(`${messageTemplate} C'est un amour sincère qui va durer, on l'espère`)
         .catch(error)
     }
 
@@ -35,7 +35,7 @@ module.exports.run = (Root, message, args) => {
     }
 
     if (loveRate >= 80 && loveRate < 100) {
-        message.channel.send(`${messageTemplate} l'amour, l'Amour avec un grand A l'amour parfait qui sera unique et toujours puissant comme au premier jour`)
+        message.channel.send(`${messageTemplate} L'amour, l'Amour avec un grand A, l'amour parfait qui sera unique et toujours puissant comme au premier jour`)
         .catch(error)
     }
     
