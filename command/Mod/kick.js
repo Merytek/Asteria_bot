@@ -21,6 +21,6 @@ module.exports.help = {
     name: 'kick',
     alias: null,
     description: 'fait en sorte que les modos puissent kick les éléments perturbateurs',
-    usage: "$kick <user> [reason]"?
+    usage: "$kick <user> [reason]",
     permission: "KICK_MEMBERS"
 };
