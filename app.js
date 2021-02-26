@@ -16,9 +16,7 @@ const loadCommands = (dir = "./command/") => {
         for (const file of commands) {
             const getFileName = require(`${dir}/${dirs}/${file}`);
             Root.commands.set(getFileName.help.name, getFileName);
-            Root.commands.set(getFileName.help.alias, getFileName);
             console.log("commande chargés: ", getFileName.help.name);
-            console.log("alias chargés: ", getFileName.help.alias);
         };
     });
 };

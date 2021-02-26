@@ -32,7 +32,7 @@ module.exports = Root => {
     Root.updateLevel = async (Root, member, XpRest) => {
         const UpdateUser = await Root.getUser(member);
         const levelUp = UpdateUser.level + 1;
-        const require = UpdateUser.requis * 4;
+        const require = UpdateUser.requis * 2;
         await Root.updateUser(member, {experience: XpRest, requis: require, level: levelUp });
 
     }
