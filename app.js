@@ -6,7 +6,7 @@ const { error } = require("console");
 
 const Root = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 require("./function")(Root);
-Root.mongoose = require("./mongoose.js");
+Root.mongoose = require("./mongoose");
 Root.commands = new Collection();
 
 const loadCommands = (dir = "./command/") => {
