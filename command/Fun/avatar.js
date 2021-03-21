@@ -8,7 +8,7 @@ module.exports.run = (Root, message, args) => {
 
             .setColor("#12A0C6")
             .setTitle(`voici ta pp ${message.author.username}`)
-            .setImage(message.author.displayAvatarURL())
+            .setImage(message.author.displayAvatarURL({ dynamic: true }))
 
         message.channel.send(Avatar)
         .catch(error);
@@ -18,7 +18,7 @@ module.exports.run = (Root, message, args) => {
 
                 .setColor("#12A0C6")
                 .setTitle(`voici la pp de ${mention.user.username}`)
-                .setImage(mention.user.displayAvatarURL())
+                .setImage(mention.user.displayAvatarURL({ dynamic: true }))
 
             message.channel.send(AvatarMention)
             .catch(error);
@@ -28,7 +28,8 @@ module.exports.run = (Root, message, args) => {
 
 module.exports.help = {
     name: 'avatar',
-    alias: "pp",
+    alias: ["pp"],
+    categorie: "fun",
     description: 'permet de voir ta pp ou la pp de n\'importe qui sur le serveur',
     usage: "$avatar [user]",
     permission: null

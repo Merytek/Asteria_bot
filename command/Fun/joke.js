@@ -28,6 +28,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'joke',
     alias: null,
+    categorie: "fun",
     description: 'Renvoie une blague qui te feras mourir de rire !...ou pas...plutôt pas en fait',
     usage: "$joke",
     permission: null

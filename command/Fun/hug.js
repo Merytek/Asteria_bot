@@ -33,6 +33,7 @@ module.exports.run = async (Root, message, args) => {
 module.exports.help = {
     name: 'hug',
     alias: null,
+    categorie: "fun",
     description: 'permet de faire un câlin aux gens du serveur !',
     usage: "$hug [user]",
     permission: null

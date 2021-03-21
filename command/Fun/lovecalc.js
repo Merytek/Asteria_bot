@@ -44,7 +44,8 @@ module.exports.run = (Root, message, args) => {
 
 module.exports.help = {
     name: "lovecalc",
-    alias: "lc",
+    alias: ["lc"],
+    categorie: "fun",
     description: "permet de calculer l'amour entre 2 personnes",
     usage: "$lovecalc <first_args> <second_args>" || "$lc <first_args> <second_args>",
     permission: null

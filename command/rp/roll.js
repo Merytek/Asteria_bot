@@ -11,6 +11,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'roll',
     alias: null,
+    categorie: "rp",
     description: 'Renvoie un nombre aléatoire dans un lancé de dés avec un nombre maximum choisi par le joueur',
     usage: "$roll <int>",
     permission: null

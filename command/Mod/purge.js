@@ -18,6 +18,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'purge',
     alias: null,
+    categorie: "mod",
     description: 'permet aux modos de supprimer les messages dans les channels pour garder un serveur propre',
     usage: "$purge <int>",
     permission: "MANAGE_MESSAGE"

@@ -13,7 +13,8 @@ module.exports.run = (Root, message, args) => {
 
 module.exports.help = {
     name: 'source',
-    alias: "src",
+    alias: ["src"],
+    categorie: "misc",
     description: 'vous envoie vers le code source de mon bot !',
     usage: "$source" || "$src",
     permission: null

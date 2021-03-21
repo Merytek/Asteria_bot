@@ -29,6 +29,7 @@ module.exports.run = async (Root, message, args) => {
 module.exports.help = {
     name: 'iss',
     alias: null,
+    categorie: "fun",
     description: 'Renvoie la position de l\'ISS en temps réel',
     usage: "$iss",
     permission: null

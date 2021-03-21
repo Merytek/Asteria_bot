@@ -25,6 +25,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'unmute',
     alias: null,
+    categorie: "mod",
     description: 'permet aux modérateurs de vous unmute',
     usage: "$unmute",
     permission: "MANAGE_MEMBER" && "MANAGE_ROLE"

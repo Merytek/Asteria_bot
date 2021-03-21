@@ -34,6 +34,7 @@ module.exports.run = async (Root, message, args) => {
 module.exports.help = {
     name: 'kiss',
     alias: null,
+    categorie: "fun",
     description: 'permet de faire un bisous aux gens du serveur !',
     usage: "$kiss [user]",
     permission: null

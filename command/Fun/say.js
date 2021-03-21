@@ -8,6 +8,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'say',
     alias: null,
+    categorie: "fun",
     description: 'fait dire au bot la phrase que tu as choisi',
     usage: "$say <message>",
     permission: null

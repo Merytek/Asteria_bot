@@ -20,6 +20,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'kick',
     alias: null,
+    categorie: "mod",
     description: 'fait en sorte que les modos puissent kick les éléments perturbateurs',
     usage: "$kick <user> [reason]",
     permission: "KICK_MEMBERS"

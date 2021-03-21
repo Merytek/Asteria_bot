@@ -19,6 +19,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'ban',
     alias: null,
+    categorie: "mod",
     description: 'donne la possibilité aux modérateurs de bannir les plus turbulents',
     usage: "$ban <user> [reason]",
     permission: "BAN_MEMBERS"

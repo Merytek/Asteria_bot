@@ -17,6 +17,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'letter',
     alias: null,
+    categorie: "rp",
     description: 'Envoie une lettre secrète à un membre du serveur !',
     usage: "$letter <user> <message>",
     permission: null

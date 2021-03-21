@@ -16,6 +16,7 @@ module.exports.run = async (Root, message, args) => {
 module.exports.help = {
     name: 'eval',
     alias: null,
+    categorie: "admin",
     description: 'permet d\'exécuter du JS sur le serveur',
     usage: "$eval <Client.emit(\"eventName\", arguments)>",
     permission: "ADMINISTRATOR"

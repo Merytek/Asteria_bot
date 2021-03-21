@@ -30,6 +30,7 @@ module.exports.run = (Root, message, args) => {
 module.exports.help = {
     name: 'mute',
     alias: null,
+    categorie: "mod",
     description: 'permet aux modérateurs de mute les éléments perturbateurs !',
     usage: "$mute <user> [reason]",
     permission: "MANAGE_MEMBER" && "MANAGE_ROLE"

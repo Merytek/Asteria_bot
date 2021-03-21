@@ -29,7 +29,8 @@ module.exports.run = async (Root, message, args) => {
 
 module.exports.help = {
     name: 'suggestion',
-    alias: "suggest",
+    alias: ["suggest"],
+    categorie: "misc",
     description: 'vous permet de faire une suggestion pour le serveur',
     usage: "$suggestion" || "$suggest",
     permission: null

@@ -15,7 +15,8 @@ module.exports.run = (Root, message, args, dbUser) => {
 
 module.exports.help = {
     name: "rank",
-    alias: null,
+    alias: ["rank"],
+    categorie: "xp",
     description: "Permet de voir le nombre d'Xp d'un utilisateur",
     permission: null
 }
