@@ -102,6 +102,7 @@ module.exports = async (Root, message) => {
 Je compte surtout amélioré cette partie : 
 
 ```javascript
+
 if (!dbUser && !message.author.bot) {
         await Root.createUser({
             guildID: message.member.guild.id,
