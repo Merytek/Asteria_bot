@@ -141,6 +141,7 @@ if (!dbUser && !message.author.bot) {
 
         }
     }
+    
     ```
   
    qui est basiquement la partie gérant l'autorôle par Xp et j'essaye à tout prix de ne pas mettre une tour de `if`
