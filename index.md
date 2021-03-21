@@ -1,6 +1,6 @@
 ## Bienvenue sur la page Web de mon Bot
 
-Vous pouvez retrouver le repo juste là: [Je suis le rrepo ^^](https://github.com/Merytek/Asteria_bot) pour voir les nouvelles fonctionnalitées du bot !
+Vous pouvez retrouver le repo juste là: [Je suis le repo ^^](https://github.com/Merytek/Asteria_bot) pour voir les nouvelles fonctionnalitées du bot !
 
 Mon bot est taillé pour fonctionner sur mon propre **serveur** Discord cependant vous pouvez l'utiliser pour le votre il suffit de créer une DB sur [mongoDB](https://www.mongodb.com/) de modifier le fichier [config](https://github.com/Merytek/Asteria_bot/main/tree/config.json) et plusieurs petit détail dans certaines commandes notamment celles qui envoient une réponse dans un certain channel 
 
@@ -141,7 +141,7 @@ if (!dbUser && !message.author.bot) {
         }
     }
     ```
-   ```
+  
    qui est basiquement la partie gérant l'autorôle par Xp et j'essaye à tout prix de ne pas mettre une tour de `if`
    
    ### Objectifs
@@ -158,3 +158,8 @@ if (!dbUser && !message.author.bot) {
 - [ ] Faire la commande help
 - [ ] Ajouter des Achievements secret
 - [ ] embellir le [message.js](https://github.com/Merytek/Asteria_bot/main/tree/event/client/message.js)
+
+
+### Erreurs
+
+Je modifie légèrement la page pour m'excuser de la petite erreur que j'ai faites je me suis rendu compte il y a peu que je me suis emmêlé les pinceaux entre les version 0.6.0 et 0.7.0 quand j'ai retranscrit les versions j'ai normalement tout corrigé et ça ne se reprdouira plus
