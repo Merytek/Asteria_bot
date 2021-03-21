@@ -52,7 +52,7 @@ class CoreMongooseArray extends Array {
 
   $__getAtomics() {
     const ret = [];
-    const keys = Object.keys(this[arrayAtomicsSymbol]);
+    const keys = Object.keys(this[arrayAtomicsSymbol] || {});
     let i = keys.length;
 
     const opts = Object.assign({}, internalToObjectOptions, { _isNested: true });
@@ -248,8 +248,8 @@ class CoreMongooseArray extends Array {
 
       // gh-2399
       // we should cast model only when it's not a discriminator
-      const isDisc = value.schema && value.schema.discriminatorMapping &&
-          value.schema.discriminatorMapping.key !== undefined;
+      const isDisc = value.$__schema && value.$__schema.discriminatorMapping &&
+          value.$__schema.discriminatorMapping.key !== undefined;
       if (!isDisc) {
         value = new Model(value);
       }
@@ -284,7 +284,7 @@ class CoreMongooseArray extends Array {
    * @memberOf MongooseArray
    */
 
-  _markModified(elem, embeddedPath) {
+  _markModified(elem) {
     const parent = this[arrayParentSymbol];
     let dirtyPath;
 
@@ -292,13 +292,7 @@ class CoreMongooseArray extends Array {
       dirtyPath = this[arrayPathSymbol];
 
       if (arguments.length) {
-        if (embeddedPath != null) {
-          // an embedded doc bubbled up the change
-          dirtyPath = dirtyPath + '.' + this.indexOf(elem) + '.' + embeddedPath;
-        } else {
-          // directly set an index
-          dirtyPath = dirtyPath + '.' + elem;
-        }
+        dirtyPath = dirtyPath + '.' + elem;
       }
 
       if (dirtyPath != null && dirtyPath.endsWith('.$')) {
@@ -843,7 +837,21 @@ class CoreMongooseArray extends Array {
     ret[arrayParentSymbol] = this[arrayParentSymbol];
     ret[arraySchemaSymbol] = this[arraySchemaSymbol];
     ret[arrayAtomicsSymbol] = this[arrayAtomicsSymbol];
+    ret[arrayPathSymbol] = this[arrayPathSymbol];
     ret[slicedSymbol] = true;
+    return ret;
+  }
+
+  /*!
+   * ignore
+   */
+
+  filter() {
+    const ret = super.filter.apply(this, arguments);
+    ret[arrayParentSymbol] = this[arrayParentSymbol];
+    ret[arraySchemaSymbol] = this[arraySchemaSymbol];
+    ret[arrayAtomicsSymbol] = this[arrayAtomicsSymbol];
+    ret[arrayPathSymbol] = this[arrayPathSymbol];
     return ret;
   }
 

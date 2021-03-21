@@ -1,4 +1,4 @@
-# Patch note
+# Patch note Fun update
 
 ### Description de la Release
 

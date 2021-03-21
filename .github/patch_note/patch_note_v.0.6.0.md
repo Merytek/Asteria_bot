@@ -1,18 +1,15 @@
-# Patch note
+# Patch note Alias Update
 
 ### Description de la Release
 
 - Version: [v.0.6.0](https://github.com/Merytek/Asteria_bot/releases/tag/v.0.6.0)
 
-Cette version intègre les patch notes des anciennes version ainsi que les templates pour les requêtes de bug trouvé ainsi que les demandes/suggestion d'ajout de nouvelle fonctionnalité de plus le [README](https://github.com/Merytek/Asteria_bot/main/tree/README.md) a été corrigé
+cette version contient la première prise en charge des alias de commmande cette solution bien que temporaire fonctionne tout de même
 
 ### Ajout
 
-- [Template](https://github.com/Merytek/Asteria_bot/main/tree/.github/patch_note/patch_note_template): Le template utilisé pour mes patch notes 
-- Ajout de toutes les versions des patche notes 
-- Correction du [README](https://github.com/Merytek/Asteria_bot/main/tree/README.md)
-
+- Sur toute les commandes ont été ajouté une propriété : `alias` qui prend pour argument soit un alias soit `null` quand elle n'a pas d'argument
 
 ### Supression
 
-- aucune suppression pour cette version
+- aucune supression pour cette version 

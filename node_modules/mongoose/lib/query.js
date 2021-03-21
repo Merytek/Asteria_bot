@@ -22,6 +22,7 @@ const promiseOrCallback = require('./helpers/promiseOrCallback');
 const getDiscriminatorByValue = require('./helpers/discriminator/getDiscriminatorByValue');
 const hasDollarKeys = require('./helpers/query/hasDollarKeys');
 const helpers = require('./queryhelpers');
+const isExclusive = require('./helpers/projection/isExclusive');
 const isInclusive = require('./helpers/projection/isInclusive');
 const mquery = require('mquery');
 const parseProjection = require('./helpers/projection/parseProjection');
@@ -273,6 +274,28 @@ Query.prototype.toConstructor = function toConstructor() {
  * @api public
  */
 
+/**
+ * Specifies a `$slice` projection for an array.
+ *
+ * ####Example
+ *
+ *     query.slice('comments', 5)
+ *     query.slice('comments', -5)
+ *     query.slice('comments', [10, 5])
+ *     query.where('comments').slice(5)
+ *     query.where('comments').slice([-10, 5])
+ *
+ * @method slice
+ * @memberOf Query
+ * @instance
+ * @param {String} [path]
+ * @param {Number} val number/range of elements to slice
+ * @return {Query} this
+ * @see mongodb http://www.mongodb.org/display/DOCS/Retrieving+a+Subset+of+Fields#RetrievingaSubsetofFields-RetrievingaSubrangeofArrayElements
+ * @see $slice http://docs.mongodb.org/manual/reference/projection/slice/#prj._S_slice
+ * @api public
+ */
+
 Query.prototype.slice = function() {
   if (arguments.length === 0) {
     return this;
@@ -458,7 +481,7 @@ Query.prototype.slice = function() {
  * @memberOf Query
  * @instance
  * @param {String} [path]
- * @param {Number} val
+ * @param {any} val
  * @api public
  */
 
@@ -472,7 +495,7 @@ Query.prototype.slice = function() {
  * @memberOf Query
  * @instance
  * @param {String} [path]
- * @param {Number} val
+ * @param {Array} val
  * @api public
  */
 
@@ -486,7 +509,7 @@ Query.prototype.slice = function() {
  * @memberOf Query
  * @instance
  * @param {String} [path]
- * @param {Number} val
+ * @param {Array} val
  * @api public
  */
 
@@ -626,7 +649,7 @@ Query.prototype.mod = function() {
  * @memberOf Query
  * @instance
  * @param {String} [path]
- * @param {Number} val
+ * @param {Boolean} val
  * @return {Query} this
  * @see $exists http://docs.mongodb.org/manual/reference/operator/exists/
  * @api public
@@ -697,28 +720,6 @@ Query.prototype.mod = function() {
  * @memberOf Query
  * @instance
  * @return {Query} this
- * @api public
- */
-
-/**
- * Specifies a `$slice` projection for an array.
- *
- * ####Example
- *
- *     query.slice('comments', 5)
- *     query.slice('comments', -5)
- *     query.slice('comments', [10, 5])
- *     query.where('comments').slice(5)
- *     query.where('comments').slice([-10, 5])
- *
- * @method slice
- * @memberOf Query
- * @instance
- * @param {String} [path]
- * @param {Number} val number/range of elements to slice
- * @return {Query} this
- * @see mongodb http://www.mongodb.org/display/DOCS/Retrieving+a+Subset+of+Fields#RetrievingaSubsetofFields-RetrievingaSubrangeofArrayElements
- * @see $slice http://docs.mongodb.org/manual/reference/projection/slice/#prj._S_slice
  * @api public
  */
 
@@ -1338,7 +1339,6 @@ Query.prototype.setOptions = function(options, overwrite) {
     }
     return this;
   }
-
   if (options == null) {
     return this;
   }
@@ -1397,9 +1397,11 @@ Query.prototype.setOptions = function(options, overwrite) {
 Query.prototype.explain = function(verbose) {
   if (arguments.length === 0) {
     this.options.explain = true;
-    return this;
+  } else if (verbose === false) {
+    delete this.options.explain;
+  } else {
+    this.options.explain = verbose;
   }
-  this.options.explain = verbose;
   return this;
 };
 
@@ -1428,7 +1430,7 @@ Query.prototype.maxTimeMS = function(ms) {
 };
 
 /**
- * Returns the current query filter (also known as conditions) as a POJO.
+ * Returns the current query filter (also known as conditions) as a [POJO](https://masteringjs.io/tutorials/fundamentals/pojo).
  *
  * ####Example:
  *
@@ -3329,6 +3331,7 @@ Query.prototype.findOneAndReplace = function(filter, replacement, options, callb
   }
 
   this.setOptions(options);
+  this.setOptions({ overwrite: true });
 
   if (!callback) {
     return this;
@@ -4440,6 +4443,8 @@ function _wrapThunkCallback(query, cb) {
  * Executes the query returning a `Promise` which will be
  * resolved with either the doc(s) or rejected with the error.
  *
+ * More about [`then()` in JavaScript](https://masteringjs.io/tutorials/fundamentals/then).
+ *
  * @param {Function} [resolve]
  * @param {Function} [reject]
  * @return {Promise}
@@ -4455,6 +4460,8 @@ Query.prototype.then = function(resolve, reject) {
  * resolved with either the doc(s) or rejected with the error.
  * Like `.then()`, but only takes a rejection handler.
  *
+ * More about [Promise `catch()` in JavaScript](https://masteringjs.io/tutorials/fundamentals/catch).
+ *
  * @param {Function} [reject]
  * @return {Promise}
  * @api public
@@ -4464,20 +4471,54 @@ Query.prototype.catch = function(reject) {
   return this.exec().then(null, reject);
 };
 
-/*!
- * ignore
+/**
+ * Add pre [middleware](/docs/middleware.html) to this query instance. Doesn't affect
+ * other queries.
+ *
+ * ####Example:
+ *
+ *     const q1 = Question.find({ answer: 42 });
+ *     q1.pre(function middleware() {
+ *       console.log(this.getFilter());
+ *     });
+ *     await q1.exec(); // Prints "{ answer: 42 }"
+ *
+ *     // Doesn't print anything, because `middleware()` is only
+ *     // registered on `q1`.
+ *     await Question.find({ answer: 42 });
+ *
+ * @param {Function} fn
+ * @return {Promise}
+ * @api public
  */
 
-Query.prototype._pre = function(fn) {
+Query.prototype.pre = function(fn) {
   this._hooks.pre('exec', fn);
   return this;
 };
 
-/*!
- * ignore
+/**
+ * Add post [middleware](/docs/middleware.html) to this query instance. Doesn't affect
+ * other queries.
+ *
+ * ####Example:
+ *
+ *     const q1 = Question.find({ answer: 42 });
+ *     q1.post(function middleware() {
+ *       console.log(this.getFilter());
+ *     });
+ *     await q1.exec(); // Prints "{ answer: 42 }"
+ *
+ *     // Doesn't print anything, because `middleware()` is only
+ *     // registered on `q1`.
+ *     await Question.find({ answer: 42 });
+ *
+ * @param {Function} fn
+ * @return {Promise}
+ * @api public
  */
 
-Query.prototype._post = function(fn) {
+Query.prototype.post = function(fn) {
   this._hooks.post('exec', fn);
   return this;
 };
@@ -4545,7 +4586,8 @@ Query.prototype._castUpdate = function _castUpdate(obj, overwrite) {
     strict: strict,
     omitUndefined,
     useNestedStrict: useNestedStrict,
-    upsert: upsert
+    upsert: upsert,
+    arrayFilters: this.options.arrayFilters
   }, this, this._conditions);
 };
 
@@ -4618,6 +4660,7 @@ function castDoc(query, overwrite) {
  * @param {boolean} [options.getters=false] if true, Mongoose will call any getters defined on the `localField`. By default, Mongoose gets the raw value of `localField`. For example, you would need to set this option to `true` if you wanted to [add a `lowercase` getter to your `localField`](/docs/schematypes.html#schematype-options).
  * @param {boolean} [options.clone=false] When you do `BlogPost.find().populate('author')`, blog posts with the same author will share 1 copy of an `author` doc. Enable this option to make Mongoose clone populated docs before assigning them.
  * @param {Object|Function} [options.match=null] Add an additional filter to the populate query. Can be a filter object containing [MongoDB query syntax](https://docs.mongodb.com/manual/tutorial/query-documents/), or a function that returns a filter object.
+ * @param {Function} [options.transform=null] Function that Mongoose will call on every populated document that allows you to transform the populated document.
  * @param {Object} [options.options=null] Additional options like `limit` and `lean`.
  * @see population ./populate.html
  * @see Query#select #query_Query-select
@@ -4748,7 +4791,6 @@ Query.prototype.cast = function(model, obj) {
   obj || (obj = this._conditions);
 
   model = model || this.model;
-
   const discriminatorKey = model.schema.options.discriminatorKey;
   if (obj != null &&
       obj.hasOwnProperty(discriminatorKey)) {
@@ -4846,7 +4888,7 @@ Query.prototype._applyPaths = function applyPaths() {
   }
 
   if (_selectPopulatedPaths) {
-    selectPopulatedFields(this);
+    selectPopulatedFields(this._fields, this._userProvidedFields, this._mongooseOptions.populate);
   }
 };
 
@@ -4960,7 +5002,7 @@ Query.prototype.tailable = function(val, opts) {
   }
 
   if (opts && typeof opts === 'object') {
-    for (const key in opts) {
+    for (const key of Object.keys(opts)) {
       if (key === 'awaitdata') {
         // For backwards compatibility
         this.options[key] = !!opts[key];
@@ -5362,21 +5404,7 @@ Query.prototype.selectedInclusively = function selectedInclusively() {
  */
 
 Query.prototype.selectedExclusively = function selectedExclusively() {
-  if (!this._fields) {
-    return false;
-  }
-
-  const keys = Object.keys(this._fields);
-  for (const key of keys) {
-    if (key === '_id') {
-      continue;
-    }
-    if (this._fields[key] === 0 || this._fields[key] === false) {
-      return true;
-    }
-  }
-
-  return false;
+  return isExclusive(this._fields);
 };
 
 /*!

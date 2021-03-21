@@ -8,7 +8,7 @@ const AggregationCursor = require('./cursor/AggregationCursor');
 const Query = require('./query');
 const applyGlobalMaxTimeMS = require('./helpers/query/applyGlobalMaxTimeMS');
 const promiseOrCallback = require('./helpers/promiseOrCallback');
-const stringifyAccumulatorOptions = require('./helpers/aggregate/stringifyAccumulatorOptions');
+const stringifyFunctionOperators = require('./helpers/aggregate/stringifyFunctionOperators');
 const util = require('util');
 const utils = require('./utils');
 const read = Query.prototype.read;
@@ -471,7 +471,7 @@ Aggregate.prototype.sortByCount = function(arg) {
 };
 
 /**
- * Appends new custom $lookup operator(s) to this aggregate pipeline.
+ * Appends new custom $lookup operator to this aggregate pipeline.
  *
  * ####Examples:
  *
@@ -479,8 +479,7 @@ Aggregate.prototype.sortByCount = function(arg) {
  *
  * @see $lookup https://docs.mongodb.org/manual/reference/operator/aggregation/lookup/#pipe._S_lookup
  * @param {Object} options to $lookup as described in the above link
- * @return {Aggregate}
- * @api public
+ * @return {Aggregate}* @api public
  */
 
 Aggregate.prototype.lookup = function(options) {
@@ -523,7 +522,7 @@ Aggregate.prototype.graphLookup = function(options) {
 };
 
 /**
- * Appends new custom $sample operator(s) to this aggregate pipeline.
+ * Appends new custom $sample operator to this aggregate pipeline.
  *
  * ####Examples:
  *
@@ -984,7 +983,7 @@ Aggregate.prototype.exec = function(callback) {
 
   return promiseOrCallback(callback, cb => {
     prepareDiscriminatorPipeline(this);
-    stringifyAccumulatorOptions(this._pipeline);
+    stringifyFunctionOperators(this._pipeline);
 
     model.hooks.execPre('aggregate', this, error => {
       if (error) {

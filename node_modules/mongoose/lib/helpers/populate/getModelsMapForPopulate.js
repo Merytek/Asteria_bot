@@ -43,7 +43,6 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
   for (i = 0; i < len; i++) {
     doc = docs[i];
     let justOne = null;
-
     schema = getSchemaTypes(modelSchema, doc, options.path);
     // Special case: populating a path that's a DocumentArray unless
     // there's an explicit `ref` or `refPath` re: gh-8946
@@ -67,6 +66,7 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
     modelNames = null;
     let isRefPath = !!_firstWithRefPath;
     let normalizedRefPath = _firstWithRefPath ? get(_firstWithRefPath, 'options.refPath', null) : null;
+    let schemaOptions = null;
 
     if (Array.isArray(schema)) {
       const schemasArray = schema;
@@ -104,6 +104,7 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
         isRefPath = res.isRefPath;
         normalizedRefPath = res.refPath;
         justOne = res.justOne;
+        schemaOptions = get(schema, 'options.populate', null);
       } catch (error) {
         return error;
       }
@@ -123,6 +124,8 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
         _virtualRes.nestedSchemaPath + '.' : '';
       if (typeof virtual.options.localField === 'function') {
         localField = virtualPrefix + virtual.options.localField.call(doc, doc);
+      } else if (Array.isArray(virtual.options.localField)) {
+        localField = virtual.options.localField.map(field => virtualPrefix + field);
       } else {
         localField = virtualPrefix + virtual.options.localField;
       }
@@ -170,9 +173,11 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
       }
     } else if (schema && !schema[schemaMixedSymbol]) {
       // Skip Mixed types because we explicitly don't do casting on those.
-      justOne = Array.isArray(schema) ?
-        schema.every(schema => !schema.$isMongooseArray) :
-        !schema.$isMongooseArray;
+      if (options.path.endsWith('.' + schema.path)) {
+        justOne = Array.isArray(schema) ?
+          schema.every(schema => !schema.$isMongooseArray) :
+          !schema.$isMongooseArray;
+      }
     }
 
     if (!modelNames) {
@@ -191,6 +196,27 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
     }
     if (typeof foreignField === 'function') {
       foreignField = foreignField.call(doc);
+    }
+
+    let match = get(options, 'match', null) ||
+      get(currentOptions, 'match', null) ||
+      get(options, 'virtual.options.match', null) ||
+      get(options, 'virtual.options.options.match', null);
+
+    let hasMatchFunction = typeof match === 'function';
+    if (hasMatchFunction) {
+      match = match.call(doc, doc);
+    }
+
+    if (Array.isArray(localField) && Array.isArray(foreignField) && localField.length === foreignField.length) {
+      match = Object.assign({}, match);
+      for (let i = 1; i < localField.length; ++i) {
+        match[foreignField[i]] = convertTo_id(mpath.get(localField[i], doc, lookupLocalFields), schema);
+        hasMatchFunction = true;
+      }
+
+      localField = localField[0];
+      foreignField = foreignField[0];
     }
 
     const localFieldPathType = modelSchema._getPathType(localField);
@@ -219,16 +245,6 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
 
     const id = String(utils.getValue(foreignField, doc));
     options._docs[id] = Array.isArray(ret) ? ret.slice() : ret;
-
-    let match = get(options, 'match', null) ||
-      get(currentOptions, 'match', null) ||
-      get(options, 'virtual.options.match', null) ||
-      get(options, 'virtual.options.options.match', null);
-
-    const hasMatchFunction = typeof match === 'function';
-    if (hasMatchFunction) {
-      match = match.call(doc, doc);
-    }
 
     // Re: gh-8452. Embedded discriminators may not have `refPath`, so clear
     // out embedded discriminator docs that don't have a `refPath` on the
@@ -306,6 +322,8 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
 
         if (isVirtual && get(virtual, 'options.options')) {
           currentOptions.options = utils.clone(virtual.options.options);
+        } else if (schemaOptions != null) {
+          currentOptions.options = Object.assign({}, schemaOptions);
         }
         utils.merge(currentOptions, options);
 
@@ -341,7 +359,6 @@ module.exports = function getModelsMapForPopulate(model, docs, options) {
       }
     }
   }
-
   return map;
 
   function _getModelNames(doc, schema) {

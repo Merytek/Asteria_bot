@@ -15,8 +15,6 @@ const schemaTypeSymbol = require('./helpers/symbols').schemaTypeSymbol;
 const util = require('util');
 const utils = require('./utils');
 const validatorErrorSymbol = require('./helpers/symbols').validatorErrorSymbol;
-
-const documentIsSelected = require('./helpers/symbols').documentIsSelected;
 const documentIsModified = require('./helpers/symbols').documentIsModified;
 
 const CastError = MongooseError.CastError;
@@ -75,6 +73,7 @@ function SchemaType(path, options, instance) {
   const keys = Object.keys(this.options);
   for (const prop of keys) {
     if (prop === 'cast') {
+      this.castFunction(this.options[prop]);
       continue;
     }
     if (utils.hasUserDefinedProperty(this.options, prop) && typeof this[prop] === 'function') {
@@ -120,7 +119,7 @@ function SchemaType(path, options, instance) {
 }
 
 /*!
- * ignore
+ * The class that Mongoose uses internally to instantiate this SchemaType's `options` property.
  */
 
 SchemaType.prototype.OptionsConstructor = SchemaTypeOptions;
@@ -155,6 +154,53 @@ SchemaType.cast = function cast(caster) {
   this._cast = caster;
 
   return this._cast;
+};
+
+/**
+ * Get/set the function used to cast arbitrary values to this particular schematype instance.
+ * Overrides `SchemaType.cast()`.
+ *
+ * ####Example:
+ *
+ *     // Disallow `null` for numbers, and don't try to cast any values to
+ *     // numbers, so even strings like '123' will cause a CastError.
+ *     const number = new mongoose.Number('mypath', {});
+ *     number.cast(function(v) {
+ *       assert.ok(v === undefined || typeof v === 'number');
+ *       return v;
+ *     });
+ *
+ * @param {Function|false} caster Function that casts arbitrary values to this type, or throws an error if casting failed
+ * @return {Function}
+ * @static
+ * @receiver SchemaType
+ * @function cast
+ * @api public
+ */
+
+SchemaType.prototype.castFunction = function castFunction(caster) {
+  if (arguments.length === 0) {
+    return this._castFunction;
+  }
+  if (caster === false) {
+    caster = this.constructor._defaultCaster || (v => v);
+  }
+  this._castFunction = caster;
+
+  return this._castFunction;
+};
+
+/**
+ * The function that Mongoose calls to cast arbitrary values to this SchemaType.
+ *
+ * @param {Object} value value to cast
+ * @param {Document} doc document that triggers the casting
+ * @param {Boolean} init
+ * @api public
+ */
+
+SchemaType.prototype.cast = function cast() {
+  throw new Error('Base SchemaType class does not implement a `cast()` function');
 };
 
 /**
@@ -918,7 +964,7 @@ SchemaType.prototype.required = function(required, message) {
     const cachedRequired = get(this, '$__.cachedRequired');
 
     // no validation when this path wasn't selected in the query.
-    if (cachedRequired != null && !this[documentIsSelected](_this.path) && !this[documentIsModified](_this.path)) {
+    if (cachedRequired != null && !this.$__isSelected(_this.path) && !this[documentIsModified](_this.path)) {
       return true;
     }
 
@@ -1003,7 +1049,7 @@ SchemaType.prototype.getDefault = function(scope, init) {
 
     const casted = this.applySetters(ret, scope, init);
     if (casted && casted.$isSingleNested) {
-      casted.$parent = scope;
+      casted.$__parent = scope;
     }
     return casted;
   }
@@ -1016,33 +1062,16 @@ SchemaType.prototype.getDefault = function(scope, init) {
  * @api private
  */
 
-SchemaType.prototype._applySetters = function(value, scope, init, priorVal) {
+SchemaType.prototype._applySetters = function(value, scope, init) {
   let v = value;
+  if (init) {
+    return v;
+  }
   const setters = this.setters;
-  const caster = this.caster;
 
   for (const setter of utils.clone(setters).reverse()) {
     v = setter.call(scope, v, this);
   }
-
-  if (Array.isArray(v) && caster && caster.setters) {
-    const newVal = [];
-
-    for (let i = 0; i < v.length; ++i) {
-      const value = v[i];
-      try {
-        newVal.push(caster.applySetters(value, scope, init, priorVal));
-      } catch (err) {
-        if (err instanceof MongooseError.CastError) {
-          err.$originalErrorPath = err.path;
-          err.path = err.path + '.' + i;
-        }
-        throw err;
-      }
-    }
-    v = newVal;
-  }
-
 
   return v;
 };

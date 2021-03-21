@@ -143,12 +143,15 @@ _Explication des commandes_:
 ### Dépendances Utilisé
 
 - discord.js
+- discord.js-pagination
 - mongoose
-- fs 
+- mongodb
+- fs
 - snekfetch 
 - ytdl-core 
 - humanize-duration
 - moment
+- valid-url
 
 ### Autres Informations 
 
@@ -160,10 +163,12 @@ _Explication des commandes_:
 - [v.0.4.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.4.0)
 - [v.0.5.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.5.0)
 - [v.0.6.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.6.0)
+- [v.0.7.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.7.0)
+- [v.0.8.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.8.0)
 
 **Version actuelle**:
 
-Version actuelle du projet: [v.0.6.0]
+Version actuelle du projet: **v.0.8.0**
 
 ***Projet:***
 
@@ -173,7 +178,7 @@ Version actuelle du projet: [v.0.6.0]
 - [ ] Ajouter un système de webhooks dans les commandes Rp
 - [ ] Ajouter la commande Unban
 - [ ] Faire un système d'auto-rôle par réaction
-- [ ] Ajouter la prise en charge des Alias
+- [ ] Ajouter la prise en charge **complète** des Alias
 - [ ] Faire la commande help
 - [ ] Ajouter des Achievements secret
 - [ ] embellir le [message.js](https://github.com/Merytek/Asteria_bot/main/tree/event/client/message.js)
