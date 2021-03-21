@@ -77,11 +77,14 @@ Voici la liste et l'explication des commandes [Misc](https://github.com/Merytek/
 
 _Liste des commandes_:
 
+- [help](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/help.js)
 - [ping](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/ping.js)
 - [source](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/source.js)
 - [suggestion](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc/suggestion.js)
 
 _Explication des commandes_:
+
+**help**: cette commande permet d'obtenir la liste des commandes du bot et si un argument est entré la commande en question sera elle seul listé => `$help [command_name]`
 
 **ping**: Permet d'obtenir les latences entre l'utilisateur et le bot. => `$ping`
 
@@ -168,7 +171,7 @@ _Explication des commandes_:
 
 **Version actuelle**:
 
-Version actuelle du projet: **v.0.8.0**
+Version actuelle du projet: **v.0.9.0**
 
 ***Projet:***
 
