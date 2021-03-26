@@ -99,7 +99,7 @@ module.exports = async (Root, message) => {
 }
 ```
 
-Je compte surtout amélioré cette partie : 
+Je compte surtout améliorer cette partie : 
 
 ```javascript
 
@@ -142,7 +142,7 @@ if (!dbUser && !message.author.bot) {
         }
     }
     
-    ```
+```
   
    qui est basiquement la partie gérant l'autorôle par Xp et j'essaye à tout prix de ne pas mettre une tour de `if`
    
@@ -156,12 +156,12 @@ if (!dbUser && !message.author.bot) {
 - [ ] Ajouter un système de webhooks dans les commandes Rp
 - [ ] Ajouter la commande Unban
 - [ ] Faire un système d'auto-rôle par réaction
-- [ ] Ajouter la prise en charge des Alias
-- [ ] Faire la commande help
+- [x] Ajouter la prise en charge des Alias
+- [x] Faire la commande help
 - [ ] Ajouter des Achievements secret
 - [ ] embellir le [message.js](https://github.com/Merytek/Asteria_bot/main/tree/event/client/message.js)
 
 
-### Erreurs
+### FIX ! 
 
-Je modifie légèrement la page pour m'excuser de la petite erreur que j'ai faites je me suis rendu compte il y a peu que je me suis emmêlé les pinceaux entre les version 0.6.0 et 0.7.0 quand j'ai retranscrit les versions j'ai normalement tout corrigé et ça ne se reprdouira plus
+Petits fix de la page je me suis rendu compte qu'il y avait un bug avec les code blocks qui sont maintenant réglé 
