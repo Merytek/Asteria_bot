@@ -168,10 +168,11 @@ _Explication des commandes_:
 - [v.0.6.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.6.0)
 - [v.0.7.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.7.0)
 - [v.0.8.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.8.0)
+- [v.0.9.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.9.0)
 
 **Version actuelle**:
 
-Version actuelle du projet: **v.0.9.0**
+Version actuelle du projet: **v.1.0.0**
 
 ***Projet:***
 
@@ -181,7 +182,7 @@ Version actuelle du projet: **v.0.9.0**
 - [ ] Ajouter un système de webhooks dans les commandes Rp
 - [ ] Ajouter la commande Unban
 - [ ] Faire un système d'auto-rôle par réaction
-- [ ] Ajouter la prise en charge **complète** des Alias
-- [ ] Faire la commande help
+- [x] Ajouter la prise en charge **complète** des Alias
+- [x] Faire la commande help
 - [ ] Ajouter des Achievements secret
 - [ ] embellir le [message.js](https://github.com/Merytek/Asteria_bot/main/tree/event/client/message.js)

@@ -20,7 +20,7 @@ module.exports = async (Root, message) => {
         const BannedYoutubeLink = new RegExp(/https(:)\/\/www.youtube.com\/watch\?v=[a-zA-Z0-9]+/g);
 
         if (message.channel.type === "dm") {
-            return Root.emit("directMessage", message);
+            return;
         }
 
         if (!dbUser) {
