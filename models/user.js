@@ -17,6 +17,10 @@ const userSchema = mongoose.Schema({
     requis: {
         "type": Number,
         "default": 25
+    },
+    pos: {
+        "type": Number,
+        "default": 8
     }
 });
 

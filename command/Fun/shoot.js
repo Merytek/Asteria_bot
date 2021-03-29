@@ -6,7 +6,7 @@ module.exports.run = async (Root, message, args) => {
     const { body } = await get("https://api.tenor.com/v1/random?q=shoot-anime&key=6BCDWZTZ8A07&limit=1");
     let gif = body["results"][0]["media"][0]["gif"]["url"];
 
-    if (Members) {
+    if (Members && Members.user.id !== message.author.id) {
         const ShootEmbed = new MessageEmbed()
 
             .setColor("#009A1C")

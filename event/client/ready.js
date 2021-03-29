@@ -13,7 +13,7 @@ module.exports = (Root) => {
                         "changer son alim", 
                         "décharger OmégaMachina de ses électrons",
                         "préparer un plan pour dominer le monde",
-                        "faire des câlin à Nervous Nightingales",
+                        "faire des câlin à Aether",
                         "rêver de faire le tour du monde",
                         "programmer en Lisp",
                         "Root.user.setActivity(`${activities[actID]}`);"]; //les divers statut du bot

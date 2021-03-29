@@ -1,6 +1,6 @@
 ﻿const { error } = require("console");
 module.exports.run = (Root, message, args) => {
-    const number = args.join('');
+    const number = args[0];
 
     let result = Math.floor((Math.random() * number) + 1);
 
