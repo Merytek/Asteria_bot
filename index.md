@@ -34,12 +34,13 @@ encore un module que je laisse de côté pour l'instant surtout parce que je n'a
 
 ### message.js
 
-le message.js est un de mes objectifs j'ai réussi à l'améliorer pour qu'il soit plus conmpréhensible :
+le message.js est un de mes objectifs terminé j'ai réussi à l'améliorer pour qu'il soit plus conmpréhensible :
 
 ```javascript
 const { PREFIX } = require("../../config.json");
 const { error } = require("console");
 const { MessageEmbed } = require("discord.js");
+const { db } = require("../../models/user");
 
 module.exports = async (Root, message) => {
 
@@ -56,76 +57,97 @@ module.exports = async (Root, message) => {
         }
 
         const BannedDiscordLink = new RegExp(/https(:)\/\/discord.gg\/[a-zA-Z0-9]+/g);
-        const BannedYoutubeLink = new RegExp(/https(:)\/\/www.youtube.com\/watch\?v=[a-zA-Z0-9]+/g);
 
-        if (message.channel.type === "dm") {
-            return;
-        }
-
-        if (!dbUser) {
-            await Root.createUser({
-                guildID: message.member.guild.id,
-                guildName: message.member.guild.name,
-                userID: message.member.id,
-                username: message.member.user.tag,
-            });
+        if (message.content.match(BannedDiscordLink) && !message.member.hasPermission("ADMINISTRATOR")) {
+            message.delete();
+            message.channel.send(`les liens vers d'autre serveur sont interdit sur le serveur ${message.author.username} !`)
         } else {
+            if (message.channel.type === "dm") {
+                return;
+            }
 
-            if (dbUser) {
+            if (!dbUser) {
+                await Root.createUser({
+                    guildID: message.member.guild.id,
+                    guildName: message.member.guild.name,
+                    userID: message.member.id,
+                    username: message.member.user.tag,
+                });
+            } else {
 
-                const Condition = Math.floor((Math.random() * 49) + 1);
-                if (Condition < 30 && Condition > 25) {
-                    const max = 20
-                    const min = 5
-                    let Xpgain = Math.floor((Math.random() * max) + min);
+                if (dbUser) {
 
-                    Root.updateXp(Root, message.member, Xpgain);
+                    const Condition = Math.floor((Math.random() * 49) + 1);
+                    if (Condition < 30 && Condition > 25) {
+                        const max = 20
+                        const min = 5
+                        let Xpgain = Math.floor((Math.random() * max) + min);
 
-                }
+                        Root.updateXp(Root, message.member, Xpgain);
 
-                if (dbUser.experience >= dbUser.requis) {
+                    }
 
-                    const RankUpdate = new MessageEmbed()
+                    if (dbUser.experience >= dbUser.requis) {
 
-                        .setColor("#DAF450")
-                        .setTitle(`${message.member.user.username} est passé au niveau supérieur`)
-                        .setDescription(`bravo tu es passé au niveau ${dbUser.level + 1}`)
-                        .setThumbnail(message.member.user.displayAvatarURL())
-                        .setFooter("un utilisateur est passé au niveau supérieur ")
-                        .setTimestamp()
-                    Root.channels.cache.get("781624931787472977").send(RankUpdate).catch(error);
+                        const RankUpdate = new MessageEmbed()
+
+                            .setColor("#DAF450")
+                            .setTitle(`${message.member.user.username} est passé au niveau supérieur`)
+                            .setDescription(`bravo tu es passé au niveau ${dbUser.level + 1}`)
+                            .setThumbnail(message.member.user.displayAvatarURL())
+                            .setFooter("un utilisateur est passé au niveau supérieur ")
+                            .setTimestamp()
+                        Root.channels.cache.get("781624931787472977").send(RankUpdate).catch(error);
 
 
-                    XpRest = dbUser.experience - dbUser.requis;
-                    await Root.updateLevel(Root, message.member, XpRest);
+                        XpRest = await dbUser.experience - await dbUser.requis;
+                        await Root.updateLevel(Root, message.member, XpRest);
 
-                    if (dbUser.level < 65) {
-                        if (dbUser.level.toString().endsWith("5") || dbUser.level.toString().endsWith("0")) {
-                            //dernière couche de vérification + ajout du nouveau rôle et suppression de l'ancien
-                        } else return;
+                        if (dbUser.level < 65) {
+                            if (dbUser.level.toString().endsWith("5") || dbUser.level.toString().endsWith("0")) {
+                                let RolePosition = await dbUser.pos;
+                                let oldRole = message.guild.roles.cache.find(r => r.position === RolePosition)
+                                let newRole = message.guild.roles.cache.find(r => r.position === RolePosition + 1);
+                                message.member.roles.remove(oldRole, "level up");
+                                message.member.roles.add(newRole, "level up");
+                                Root.updatePosition(Root, message.member);
+                                
+                                const RoleEmbed = new MessageEmbed()
+
+                                    .setColor("#DC10A1")
+                                    .setTitle(`Bravo ${message.author.username} vous avez débloqué un nouveau rôle !`)
+                                    .setDescription(`Tu as obtenu l'incroyable rôle: **${newRole}**`)
+                                    .setFooter("un utilisateur a eu un nouveau rôle !")
+                                    .setTimestamp()
+
+                                message.channel.send(RoleEmbed).catch(error);
+
+                                } else return;
+                        }
                     }
                 }
             }
-        }
 
-        if (message.type === "USER_PREMIUM_GUILD_SUBSCRIPTION") {
-            const ServerBooster = new MessageEmbed()
+            if (message.type === "USER_PREMIUM_GUILD_SUBSCRIPTION") {
+                const ServerBooster = new MessageEmbed()
 
-                .setColor("#8A1200")
-                .setTitle(`**${message.author.username}** vient de booster le serveur ! ❤`)
-                .setImage("https://media.tenor.co/videos/7c405f4646bbe6def9fc888080263d2a/mp4")
-                .setThumbnail("https://media.tenor.co/videos/311f027c8ed6b6a33e8c36fe65e2ecc8/mp4")
-                .setTimestamp()
-                .setFooter("un utilisateur a boosté le serveur")
+                    .setColor("#8A1200")
+                    .setTitle(`**${message.author.username}** vient de booster le serveur ! ❤`)
+                    .setImage("https://media.tenor.co/videos/7c405f4646bbe6def9fc888080263d2a/mp4")
+                    .setThumbnail("https://media.tenor.co/videos/311f027c8ed6b6a33e8c36fe65e2ecc8/mp4")
+                    .setTimestamp()
+                    .setFooter("un utilisateur a boosté le serveur")
 
-            Root.channel.cache.get("820865491018579989").send(ServerBooster).catch(error);
+                Root.channel.cache.get("820865491018579989").send(ServerBooster).catch(error);
+            }
         }
     }
+
 }
 ```
 
-Je compte galère seulement encore avec la partie d'autorôle part l'xp j'essaye à tout prix de ne pas mettre une tour de `if`
-   
+Le message.js a bien été a donc maintenant son système d'Xp auto 100% fonctionnel grâce à un système simple de vérification de la position des rôles dans la hiérarchie ce qui m'évite d'avoir une grosse tour de `if` moche
+
 ### Objectifs
    
 - Voici ici les objectifs que j'ai pour le moment si vous avez lu le **README** alors vous les avez déjà vu 
