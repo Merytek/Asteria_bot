@@ -5,7 +5,15 @@ const { readdirSync } = require("fs");
 const { error } = require("console");
 
 const Root = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+
 require("./function")(Root);
+
+require("./Rp/meteo/time/time")(Root);
+require("./Rp/meteo/weather/weather_dragonstone")(Root);
+require("./Rp/meteo/weather/weather_shadowCity")(Root);
+require("./Rp/meteo/weather/weather_Kalendia")(Root);
+require("./Rp/meteo/weather/weather_IMI")(Root);
+
 Root.mongoose = require("./mongoose");
 Root.commands = new Collection();
 
@@ -37,6 +45,10 @@ const loadEvent = (dir = "./event/") => {
 loadCommands();
 loadEvent();
 Root.mongoose.init();
-
+Root.Time();
+Root.DragonestoneMeteo();
+Root.ShadowCityMeteo();
+Root.KalendiaMeteo();
+Root.IMIMeteo();
 
 Root.login(TOKEN).catch(error);

@@ -1,7 +1,6 @@
 const { PREFIX } = require("../../config.json");
 const { error } = require("console");
 const { MessageEmbed } = require("discord.js");
-const { db } = require("../../models/user");
 
 module.exports = async (Root, message) => {
 
