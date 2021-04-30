@@ -2,7 +2,6 @@
 const { Client, Collection } = require("discord.js");
 const { TOKEN } = require("./config.json");
 const { readdirSync } = require("fs");
-const { error } = require("console");
 
 const Root = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
@@ -51,4 +50,4 @@ Root.ShadowCityMeteo();
 Root.KalendiaMeteo();
 Root.IMIMeteo();
 
-Root.login(TOKEN).catch(error);
+Root.login(TOKEN).then(console.log("en cours de connexion")).catch(console.error);
