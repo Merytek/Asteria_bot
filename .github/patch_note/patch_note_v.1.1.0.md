@@ -1,4 +1,4 @@
-# Patch note `nom de la release`
+# Patch note Final XP
 
 ### Description de la Release
 
