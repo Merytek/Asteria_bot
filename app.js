@@ -50,4 +50,4 @@ Root.ShadowCityMeteo();
 Root.KalendiaMeteo();
 Root.IMIMeteo();
 
-Root.login(TOKEN).then(console.log("Connexion en cours")).catch(console.error);
+Root.login(TOKEN)
