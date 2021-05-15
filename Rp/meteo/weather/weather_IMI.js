@@ -21,6 +21,6 @@ module.exports = Root => {
                 Root.channels.fetch("826431662124171364", true, true)
                 .then(channel => channel.setName("Institut Magique: Orageux").catch(console.error));
             }
-        }, 10800000);
+        }, 8.64e+7);
     }
 }

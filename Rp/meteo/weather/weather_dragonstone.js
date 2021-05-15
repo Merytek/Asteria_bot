@@ -29,6 +29,6 @@ module.exports = Root => {
                 Root.channels.fetch("826431590845775872", true, true)
                 .then(channel => channel.setName("Dragonstone: Ensolleilé").catch(console.error));
             }
-        }, 10800000);
+        }, 8.64e+7);
     }
 }

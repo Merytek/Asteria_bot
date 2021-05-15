@@ -1,6 +1,6 @@
 {
   "name": "asteria_bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Asteria_bot",
   "main": "app.js",
   "author": {
@@ -15,6 +15,7 @@
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.1",
     "snekfetch": "^4.0.4",
-    "valid-url": "^1.0.9"
+    "valid-url": "^1.0.9",
+    "xml2json": "^0.12.0"
   }
 }

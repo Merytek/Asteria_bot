@@ -21,9 +21,8 @@ module.exports.run = async (Root, message, args) => {
 
                 .setColor('#DA340A')
                 .setTitle(title)
-                .setThumbnail("https://cdn.discordapp.com/attachments/727886136877383726/790067659814993930/58429400a6515b1e0ad75acc.png")
                 .setDescription(description)
-                .addField("localisation", location, true)
+                .addField("localisation", location)
                 .setImage(image)
                 .setFooter(`date: ${Date} | auteur: ${author}`)
 

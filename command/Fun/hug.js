@@ -1,4 +1,5 @@
 const { get } = require("snekfetch");
+const { error } = require("console");
 const { MessageEmbed } = require("discord.js");
 module.exports.run = async (Root, message, args) => {
     let Members = message.mentions.members.first();

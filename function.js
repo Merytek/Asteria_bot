@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 const { User } = require("./models/index");
+const { Register } = require("./models/index");
 
 module.exports = Root => {
     Root.createUser = async user => {
         const merged = Object.assign({ _id: mongoose.Types.ObjectId() }, user);
-        const createUser = await new User(merged);
+        const createUser = new User(merged);
         createUser.save().then(u => console.log(`nouvel utilisateur -> ${u.username}`));
     };
 
     Root.getUser = async user => {
-        const data = await User.findOne({ userID: user.id });
+        const data = await User.findOne({userID: user.id });
         if (data) return data;
         else return;
     };
@@ -19,72 +20,76 @@ module.exports = Root => {
         if (typeof data != "object") data = {};
         for (const key in settings) {
             if (data[key] !== settings[key]) data[key] = settings[key];
-
-            return data.updateOne(settings);
         }
+        return data.updateOne(settings);
+    }
 
-        Root.updateXp = async (Root, member, xp) => {
-            const UpdateUser = await Root.getUser(member);
-            const XpAdd = UpdateUser.experience + xp;
-            await Root.updateUser(member, { experience: XpAdd });
+    Root.createCharacter = async user => {
+        const merged = Object.assign({ _id: mongoose.Types.ObjectId() }, user);
+        const createCharacter = new Register(merged);
+        createCharacter.save().then(u => console.log(`nouveau personnage enregistré de -> ${u.username}`)).catch(console.error);
+    }
+
+    Root.getCharacter = async user => {
+        const data = await Register.findOne({ userID: user.id });
+        if (data) return data;
+        else return;
+    }
+
+    Root.getCharacters = async user => {
+        const data = await Register.find({userID: user.id });
+        if (data) return data;
+        else return;
+    }
+
+    Root.getBracket = async bracket => {
+        const data = await Register.find({ bracket: bracket })
+    }
+
+    Root.updateCharacter = async (user, settings) => {
+        let data = await Root.getCharacter(user);
+        if (typeof data != "object") data = {};
+        for (const key in settings) {
+            if (data[key] !== settings[key]) data[key] = settings[key];
         }
+        return data.updateOne(settings);
+    }
 
-        Root.updateLevel = async (Root, member, XpRest) => {
-            const UpdateUser = await Root.getUser(member);
-            const levelUp = UpdateUser.level + 1;
-            const require = UpdateUser.requis * 2;
-            await Root.updateUser(member, { experience: XpRest, requis: require, level: levelUp });
-        }
+    Root.updateAvatar = async (user, avatar_url) => {
+        const newAvatar = avatar_url;
+        await Root.updateCharacter(user, { avatar: newAvatar });
+    }
 
-        Root.updatePosition = async (Root, member) => {
-            const updateUser = await Root.getUser(member);
-            const positionUp = updateUser.pos + 1;
-            await Root.updateUser(member, { pos: positionUp });
-        }
+    Root.updateName = async (user, character_name) => {
+        const newName = character_name;
+        await Root.updateCharacter(user, { name: newName });
+    }
 
-        Root.dayLightCycle = async (Root) => {
-            setInterval(function () {
-                let chan = Root.guild.channels.cache.find(c => c.id === "826430887176306688");
-                const nowDate = new Date();
-                if (nowDate.getHours() >= 6 || nowDate.getHours() < 18 && nowDate.getHours() != 12) {
-                    chan.setName("Journée: Jour")
-                }
+    Root.updateBracket = async (user, character_bracket) => {
+        const newBracket = character_bracket;
+        await Root.updateCharacter(user, { bracket: newBracket });
+    }
 
-                if (nowDate.getHours() === 12) {
-                    chan.setName("Journée: Midi")
-                }
+    Root.removeChar = async (user, character_name) => {
+        await Register.findOneAndDelete({ userID: user.id, name: character_name });
+    }
 
-                if (nowDate.getHours() >= 18 || nowDate.getHours() < 22 && nowDate.getHours() != 12) {
-                    chan.setName("Journée: Soir");
-                }
-                if (nowDate.getHours() === 22 || nowDate.getHours() < 6) {
-                    chan.setName("Journée: Nuit");
-                }
-            }, 10);
-        }
+    Root.removeUser = async user => {
+        await User.findOneAndDelete({ userID: user.id});
+    }
 
-        /*Root.UpdateDragonstoneMeteo = async (Root) => {
-            setInterval(function () {
-                return;
-            }, 600000);
-        }
+    Root.updateXp = async (Root, member, xp) => {
+        const UpdateUser = await Root.getUser(member);
+        const XpAdd = UpdateUser.experience + xp;
+        await Root.updateUser(member, { experience: XpAdd });
+    }
 
-        Root.UpdateShadowcityMeteo = async (Root) => {
-            setInterval(function () {
-                return;
-            }, 600000);
-        }
-
-        Root.UpdateKalendiaMeteo = async (Root) => {
-            setInterval(function () {
-                return;
-            }, 600000);
-        }
-
-        Root.UpdateIMIMeteo = async (Root) => {
-            setInterval(function () {
-                return;
-            }, 600000);
-        }*/
+    Root.updatePosition = async (Root, member) => {
+        const updateUser = await Root.getUser(member);
+        const positionUp = updateUser.pos + 1;
+        await Root.updateUser(member, { pos: positionUp });
+    }
+    Root.emoji = (id) => {
+        return Root.emojis.get(id).toString();
     }
 }

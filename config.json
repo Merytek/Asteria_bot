@@ -1,7 +1,10 @@
 {
-  "TOKEN": "token",
+  "TOKEN": "BOT_TOKEN",
   "PREFIX": "$",
-  "DBCONNECTION": "mongodb+srv://gcknroot:<password>@cluster0.hbml0.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "URL_RSS": "RSS_URL",
+  "WEBHOOK_TOKEN": "WEBHOOKS_TOKEN",
+  "WEBHOOK_ID": "WEBHOOK_ID",
+  "DBCONNECTION": "URL",
   "DEFAULTSETTINGS": {
     "prefix": "$"
   }

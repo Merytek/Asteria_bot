@@ -3,9 +3,9 @@ module.exports.run = (Root, message, args) => {
     let Member = message.mentions.members.first();
     const Message = args.slice(1).join(" ");
     if (Member && Message) {
-        message.delete();
-        Member.send(`> *__${Member.username} tu viens de recevoir un message de la part de ${message.author.username} par chance le pigeon est arrivé entier__*\n\n\n ||${Message}||`)
+        Member.send(`> __${Member.user.username} tu viens de recevoir un message de la part de ${message.author.username} par chance le pigeon est arrivé entier__ \n\n\n ||${Message}||`)
             .catch(error)
+        message.delete();
     } else {
         if (!Member || !Message) {
             message.reply("pour utiliser la commande correctement tu dois mentionner un utilisateur et ajouter un message à envoyer")

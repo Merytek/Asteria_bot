@@ -6,7 +6,7 @@ module.exports.run = async (Root, message, args) => {
         }
         return text;
     }
-    if (message.author.id != "422848361062858752") return
+    if (message.author.id != "422848361062858752") return;
     const code = args.join(" ");
     const evaled = eval(code);
     const cleanCode = await clean(evaled);

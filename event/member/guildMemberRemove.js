@@ -9,6 +9,7 @@ module.exports = (Root, member) => {
         .setFooter("un utilisateur a quitté le serveur")
         .setTimestamp()
     
-    Root.channels.cache.get("747459650890498060").send({ embed: ByeEmbed });
+    Root.channels.cache.get("747459650890498060").send(ByeEmbed);
+    Root.removeUser(member.user);
 
 }

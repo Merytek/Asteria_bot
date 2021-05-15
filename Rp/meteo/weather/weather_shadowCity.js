@@ -17,6 +17,6 @@ module.exports = Root => {
                 Root.channels.fetch("826431628624134174", true, true)
                 .then(channel => channel.setName("Shadowcity: Brumeux").catch(console.error));
             }
-        }, 10800000);
+        }, 8.64e+7);
     }
 }
