@@ -5,7 +5,7 @@ Ce bot a été créé pour **mon serveur**, qui est lui aussi en cours de build.
 
 ### Description des commandes
 
-**Admin**:
+#### Admin:
 
 Voici la liste et l'explication des commandes [Admin](https://github.com/Merytek/Asteria_bot/tree/main/command/Admin)
 
@@ -17,7 +17,7 @@ _Explication des commandes_:
 
 eval: Cette commande permet de simuler du JS depuis le serveur, elle ne peut être utilisée que par moi, elle me permet par exemple de tester les events. Elle s'utilise comme ceci => `$eval <Client.emit("eventName", arguments)>`
 
-**Fun**:
+#### Fun:
 
 Voici la liste et l'explication des commandes [Fun](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun)
 
@@ -71,7 +71,7 @@ _Explication des commandes_:
 
 **wasted**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) => `$wasted [user]`
 
-**Misc**
+#### Misc:
 
 Voici la liste et l'explication des commandes [Misc](https://github.com/Merytek/Asteria_bot/tree/main/command/Misc)
 
@@ -92,7 +92,7 @@ _Explication des commandes_:
 
 **suggestion**: Permet de faire une suggestion au serveur. Faisable uniquement dans un certain salon puis envoyée dans un autre plus précis => `$suggest <suggestion>`
 
-**Mod**
+#### Mod:
 
 Voici la liste et l'explication des commandes [Mod](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod)
 
@@ -116,22 +116,37 @@ _Explication des commandes_:
 
 **unmute**: Unmute un utilisateur en lui retirant le rôle **muted** et ne nécessite pas de raison pour être utilisée. => `$unmute <user>`
 
-**rp**
+#### Rp:
 
 Voici la liste et l'explication des commandes [rp](https://github.com/Merytek/Asteria_bot/tree/main/command/rp.js)
 
 _Liste des commandes_:
 
 - [letter](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/letter.js)
+- [liste](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/liste.js)
+- [picture](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/picture.js)
+- [register](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/register.js)
+- [remove](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/remove.js)
 - [roll](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/roll.js)
+- [settings](https://github.com/Merytek/Asteria_bot/tree/main/command/rp/settings.js)
 
 _Explication des commandes_:
 
 **letter**: Envoye une lettre secrète à un utilisateur pour le côté Rp. Elle peut être ignorée ou non, car reçu en Mp du bot => `$letter <user> <message>`
 
+**liste**: Permet de lister les personnages qu'un utilisateur a enregistré dans la DB => `$liste` 
+
+**picture**: Change l'image du personnage enregistré dans la DB => `$picture <Name> <URL | MessageAttachment>` 
+
+**register**: Permet d'enregistrer un personnage dans la DB qui pourra être utilisé plus tard => `$register <name> <bracket::text>`
+
+**remove**: Permet de supprimer un personnage enregistré de la DB => `$remove <character_name>` 
+
 **roll**: Lancé de dés => `$roll <int>`
 
-**Xp**
+**settings**: Cette commande sert à modifier les informations d'un personnage enregistré par l'utilisateur => `$settings <"bracket" | "name"> <character_name> <new character_bracket | new character_name>`
+
+#### Xp:
 
 Voici la liste et l'explication des commandes [Xp](https://github.com/Merytek/Asteria_bot/tree/main/command/Xp)
 
@@ -170,10 +185,11 @@ _Explication des commandes_:
 - [v.0.8.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.8.0)
 - [v.0.9.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.9.0)
 - [v.1.0.0](https://github.com/Merytek/Asteria_bot/releases/tag/v1.0.0)
+- [v.1.1.0](https://github.com/Merytek/Asteria_bot/releases/tag/v.1.1.0)
 
 **Version actuelle**:
 
-Version actuelle du projet: **v.1.1.0**
+Version actuelle du projet: **v.1.2.0**
 
 ***Projet:***
 
