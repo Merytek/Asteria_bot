@@ -7,8 +7,7 @@ module.exports.run = async (Root, message, args) => {
     let URL = args[1];
 
     character.forEach(async option => {
-        const characterList = [ option.name ];
-        if (characterList.includes(Names)) {
+        if (option.name.includes(Names)) {
             if (!URL) {
                 message.attachments.forEach(async attachment => {
                     const Attachment = attachment.proxyURL;
