@@ -1,10 +1,10 @@
 {
-  "TOKEN": "NzQ3MTYxODcwOTQ2Nzk1NjYx.X0K2tw.rBbV7IEd9VcCUXWoxFtyA4sOiOw",
+  "TOKEN": "Token",
   "PREFIX": "$",
   "URL_RSS": "https://asteria-games.github.io/page/rss.xml",
-  "WEBHOOK_TOKEN": "pwWHSM7nh5fwCFHqQ6oBxF8PlWA4BR-j4y1eX6q7b2TAyoESoMNWD4AFD53_WKpAJMiE",
-  "WEBHOOK_ID": "836112257082851378",
-  "DBCONNECTION": "mongodb+srv://gcknroot:Antith%C3%A8se12@cluster0.hbml0.mongodb.net/<dbname>?authSource=admin&replicaSet=atlas-yxg3lg-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true",
+  "WEBHOOK_TOKEN": "Webhook_Token",
+  "WEBHOOK_ID": "Webhook_id",
+  "DBCONNECTION": "connection_url",
   "DEFAULTSETTINGS": {
     "prefix": "$"
   }
