@@ -47,10 +47,6 @@ module.exports.run = async (Root, message, args) => {
     }
 }
 
-
-
-
-
 module.exports.help = {
     name: 'register',
     alias: ["reg"],
