@@ -1,5 +1,14 @@
-const { error } = require("console");
-module.exports.run = (Root, message, args) => {
+const { MessageEmbed } = require("discord.js"); 
+
+//calcul % => 100*Vp/Vt => 100*GuildAchievement.<acv>/message.guild.memberCount
+
+module.exports.run = async (Root, message, args) => {
+
+    const Achievements = Root.getUserAchivement(message.member)
+
+    for (let i = 0; i < Achievements.Achievement[0].length; i++) {
+        message.channel.send(Achievements[i][2])
+    }
     
 }
 

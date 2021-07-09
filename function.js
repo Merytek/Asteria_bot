@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const { User } = require("./models/index");
-const { Register } = require("./models/index");
+const { User, Register, GuildAchievements, Achievement } = require("./models/index");
 
 module.exports = Root => {
     Root.createUser = async user => {
@@ -36,18 +35,20 @@ module.exports = Root => {
         else return;
     }
 
-    Root.getCharacters = async user => {
-        const data = await Register.find({userID: user.id });
+    Root.getCharacterByName = async (user, character_name) => {
+        const data = await Register.findOne({ name: character_name, userID: user.id });
         if (data) return data;
         else return;
     }
 
-    Root.getBracket = async bracket => {
-        const data = await Register.find({ bracket: bracket })
+    Root.getCharacters = async user => {
+        const data = await Register.find({ userID: user.id });
+        if (data) return data;
+        else return;
     }
 
-    Root.updateCharacter = async (user, settings) => {
-        let data = await Root.getCharacter(user);
+    Root.updateCharacter = async (user, characterName, settings) => {
+        let data = await Root.getCharacterByName(user, characterName);
         if (typeof data != "object") data = {};
         for (const key in settings) {
             if (data[key] !== settings[key]) data[key] = settings[key];
@@ -55,19 +56,19 @@ module.exports = Root => {
         return data.updateOne(settings);
     }
 
-    Root.updateAvatar = async (user, avatar_url) => {
+    Root.updateAvatar = async (user, characterName, avatar_url) => {
         const newAvatar = avatar_url;
-        await Root.updateCharacter(user, { avatar: newAvatar });
+        await Root.updateCharacter(user, characterName, { avatar: newAvatar });
     }
 
-    Root.updateName = async (user, character_name) => {
-        const newName = character_name;
-        await Root.updateCharacter(user, { name: newName });
+    Root.updateName = async (user, characterName, newCharName) => {
+        const newName = newCharName;
+        await Root.updateCharacter(user, characterName, { name: newName });
     }
 
-    Root.updateBracket = async (user, character_bracket) => {
+    Root.updateBracket = async (user, characterName, character_bracket) => {
         const newBracket = character_bracket;
-        await Root.updateCharacter(user, { bracket: newBracket });
+        await Root.updateCharacter(user, characterName, { bracket: newBracket });
     }
 
     Root.removeChar = async (user, character_name) => {
@@ -91,5 +92,35 @@ module.exports = Root => {
     }
     Root.emoji = (id) => {
         return Root.emojis.get(id).toString();
+    }
+
+    Root.createGuildAchievement = () => {
+        const merged = Object.assign({ _id: mongoose.Types.ObjectId() });
+        const createUser = new GuildAchievement(merged);
+        createUser.save().then(u => console.log(`Achievements du serveur créé`));
+    }
+
+    Root.getGuildAchievement = () => {
+        const data = GuildAchievements.findOne();   
+        if (data) return data;
+        else return;
+    }
+
+    Root.getAllGuildAchievements = () => {
+        const data = GuildAchievements.find();
+        if (data) return data;
+        else return;
+    }
+
+    Root.getUserAchievement = user => {
+		const data = Achievement.find( { userID: user.id } );
+        if (data) return data;
+        else return;
+    }
+
+    Root.createUserAchievement = user => {
+        const merged = Object.assign({ _id: mongoose.Types.ObjectId() }, user);
+        const createUser = new Achievement(merged);
+        createUser.save().then(u => console.log(`Achievements de l'utilisateur: ${u.username} créé`));
     }
 }

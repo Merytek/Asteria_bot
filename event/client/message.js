@@ -1,5 +1,5 @@
-const { PREFIX, WEBHOOK_ID, WEBHOOK_TOKEN } = require("../../config.json");
-const { MessageEmbed, WebhookClient } = require("discord.js");
+const { PREFIX } = require("../../config.json");
+const { MessageEmbed } = require("discord.js");
 const { User } = require("../../models");
 
 module.exports = async (Root, message) => {
@@ -22,7 +22,8 @@ module.exports = async (Root, message) => {
             message.channel.send("Je suis Asteria Bot le bot développé par Aether pour ce serveur si tu veux connaitre mes commande utilise la commande : `$help`");
         } else {
             const dbUser = await Root.getUser(message.member);
-            const settings = await Root.getCharacter(message.member)
+            const settings = await Root.getCharacters(message.member);
+            const userAchievement = await Root.getUserAchievement(message.member);
 
             if (message.content.startsWith(PREFIX)) {
                 const args = message.content.slice(PREFIX.length).split(/ +/);
@@ -31,11 +32,22 @@ module.exports = async (Root, message) => {
                 const command = Root.commands.get(commandName) || Root.commands.find(cmd => cmd.help.alias && cmd.help.alias.includes(commandName));
                 if (command) command.run(Root, message, args, dbUser);
                 else message.channel.send("désolé cette commande n'existe pas regarde la commande `$help` pour connaitre toute les commandes");
-            }
-            if (settings) {
-                    const hook = new WebhookClient(WEBHOOK_ID, WEBHOOK_TOKEN);
-                    hook.send("MessageContent", { avatarURL: settings.avatar, username: settings.name })
-            }
+            } /*else {
+                if (settings) {
+                    settings.forEach(chr => {
+                        if (message.content.startsWith(chr.bracket.toString().split(",")[0])) {
+                            const MessageContent = message.content.slice(chr.bracket.length).split(/ +/)
+                            message.delete().then(async m => {
+                                await m.channel.createWebhook("Lorem Ipsum").then(async wb => {
+                                    wb.edit({ username: settings.name, avatarURL: settings.avatar }).then(async hk => {
+                                        await hk.send(MessageContent).then(console.log).catch(console.error);
+                                    }).catch(console.error);
+                                }).catch(console.error);
+                            })
+                        }
+                    });
+                }
+            }*/
 
             const BannedDiscordLink = new RegExp(/https(:)\/\/discord.gg\/[a-zA-Z0-9]+/g);
             const BannedYoutubeLink = new RegExp(/https(:)\/\/www.youtube.com\/watch+/g)
@@ -47,7 +59,8 @@ module.exports = async (Root, message) => {
 
             if (YoutubeMatch || YoutubeMatchTwo || DiscordMatch && !message.member.hasPermission("ADMINISTRATOR")) {
                 message.delete();
-                message.channel.send(`les liens sont interdit ${message.author.username} on est pas un panneau publicitaire !`).then(m => m.delete());
+                message.channel.send(`les liens sont interdit ${message.author.username} on est pas un panneau publicitaire !`)
+                .then(m => m.delete({ timeout: 10000 }));
             }
 
             if (!dbUser) {
@@ -59,57 +72,54 @@ module.exports = async (Root, message) => {
                 });
             } else {
 
-                if (dbUser) {
+                const Condition = Math.floor((Math.random() * 49) + 1);
+                if (Condition < 30 && Condition > 25) {
+                    const max = 20
+                    const min = 5
+                    let Xpgain = Math.floor((Math.random() * max) + min);
 
-                    const Condition = Math.floor((Math.random() * 49) + 1);
-                    if (Condition < 30 && Condition > 25) {
-                        const max = 20
-                        const min = 5
-                        let Xpgain = Math.floor((Math.random() * max) + min);
+                    Root.updateXp(Root, message.member, Xpgain);
 
-                        Root.updateXp(Root, message.member, Xpgain);
+                }
 
-                    }
+                if (dbUser.experience >= dbUser.requis) {
 
-                    if (dbUser.experience >= dbUser.requis) {
+                    XpRest = dbUser.experience - dbUser.requis;
+                    require = dbUser.requis * 2
+                    levelUp = dbUser.level + 1
+                    User.findOneAndUpdate({ userID: message.author.id }, { experience: XpRest, level: levelUp, requis: require }, { new: true }).then(async dat => {
+                        const RankUpdate = new MessageEmbed()
 
-                        XpRest = dbUser.experience - dbUser.requis;
-                        require = dbUser.requis * 2
-                        levelUp = dbUser.level + 1
-                        User.findOneAndUpdate({ userID: message.author.id }, { experience: XpRest, level: levelUp, requis: require }, { new: true }).then(async dat => {
-                            const RankUpdate = new MessageEmbed()
+                            .setColor("#DAF450")
+                            .setTitle(`${message.member.user.username} est passé au niveau supérieur`)
+                            .setDescription(`bravo tu es passé au niveau ${dat.level}`)
+                            .setThumbnail(message.member.user.displayAvatarURL())
+                            .setFooter("un utilisateur est passé au niveau supérieur ")
+                            .setTimestamp()
+                        await Root.channels.cache.get("843240593218994196").send(RankUpdate)
 
-                                .setColor("#DAF450")
-                                .setTitle(`${message.member.user.username} est passé au niveau supérieur`)
-                                .setDescription(`bravo tu es passé au niveau ${dat.level}`)
-                                .setThumbnail(message.member.user.displayAvatarURL())
-                                .setFooter("un utilisateur est passé au niveau supérieur ")
-                                .setTimestamp()
-                            await Root.channels.cache.get("781624931787472977").send(RankUpdate)
+                        if (dat.level < 65) {
+                            if (dat.level.toString().endsWith("5") || dat.level.toString().endsWith("0")) {
+                                let RolePosition = await dbUser.pos;
+                                let oldRole = message.guild.roles.cache.find(r => r.position === RolePosition)
+                                let newRole = message.guild.roles.cache.find(r => r.position === RolePosition + 1);
+                                message.member.roles.remove(oldRole, "level up");
+                                message.member.roles.add(newRole, "level up");
+                                await Root.updatePosition(Root, message.member);
 
-                            if (dat.level < 65) {
-                                if (dat.level.toString().endsWith("5") || dat.level.toString().endsWith("0")) {
-                                    let RolePosition = await dbUser.pos;
-                                    let oldRole = message.guild.roles.cache.find(r => r.position === RolePosition)
-                                    let newRole = message.guild.roles.cache.find(r => r.position === RolePosition + 1);
-                                    message.member.roles.remove(oldRole, "level up");
-                                    message.member.roles.add(newRole, "level up");
-                                    await Root.updatePosition(Root, message.member);
+                                const RoleEmbed = new MessageEmbed()
 
-                                    const RoleEmbed = new MessageEmbed()
+                                    .setColor("#DC10A1")
+                                    .setTitle(`Bravo ${message.author.username} vous avez débloqué un nouveau rôle !`)
+                                    .setDescription(`Tu as obtenu l'incroyable rôle: **${newRole}**`)
+                                    .setFooter("un utilisateur a eu un nouveau rôle !")
+                                    .setTimestamp()
 
-                                        .setColor("#DC10A1")
-                                        .setTitle(`Bravo ${message.author.username} vous avez débloqué un nouveau rôle !`)
-                                        .setDescription(`Tu as obtenu l'incroyable rôle: **${newRole}**`)
-                                        .setFooter("un utilisateur a eu un nouveau rôle !")
-                                        .setTimestamp()
+                                message.channel.send(RoleEmbed)
 
-                                    message.channel.send(RoleEmbed)
-
-                                } else return;
-                            }
-                        })
-                    }
+                            } else return;
+                        }
+                    })
                 }
             }
         }

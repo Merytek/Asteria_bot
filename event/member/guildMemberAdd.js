@@ -21,4 +21,11 @@ module.exports = async (Root, member) => {
         username: member.user.tag,
     });
 
+    await Root.createUserAchievement({
+        guildID: member.guild.id,
+        guildName: member.guild.name,
+        userID: member.id,
+        username: member.user.tag,
+    });
+
 }

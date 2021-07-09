@@ -1,4 +1,3 @@
-const { error } = require("console");
 module.exports.run = (Root, message, args) => {
     
 }

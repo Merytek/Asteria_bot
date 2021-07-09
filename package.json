@@ -7,13 +7,16 @@
     "name": "Aether"
   },
   "dependencies": {
-    "discord.js": "^12.5.0",
+    "canvas": "^2.8.0",
+    "discord-buttons": "^3.1.1",
+    "discord.js": "^12.5.3",
     "discord.js-pagination": "^1.0.3",
     "fs": "0.0.1-security",
     "humanize-duration": "^3.24.0",
     "moment": "^2.29.1",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.1",
+    "ping-wrapper": "^0.0.3",
     "snekfetch": "^4.0.4",
     "valid-url": "^1.0.9",
     "xml2json": "^0.12.0"

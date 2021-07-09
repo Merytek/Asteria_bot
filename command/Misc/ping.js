@@ -1,10 +1,26 @@
-const { error } = require("console");
-module.exports.run = (Root, message, args) => {
-    const m = message.channel.send("Pinging !").then(m => {
-        let ping = m.createdTimestamp - message.createdTimestamp;
+const { MessageEmbed } = require("discord.js");
 
-        m.edit(`*pingpongping* Pong ! ton ping est de: **${ping}**ms`);
-    }).catch(error);
+module.exports.run = async (Root, message, args) => {
+
+    const pingEmbed = new MessageEmbed()
+
+        .setTitle("*pinging...*")
+        .setColor("#AE143C")
+        .setTimestamp()
+
+
+    await message.channel.send(pingEmbed).then(async m => {
+        const pingAPI = m.createdTimestamp - message.createdTimestamp;
+        const pingWebSocket = Root.ws.ping;
+
+        const EditPingEmbed = new MessageEmbed()
+            .setTitle("PONG !")
+            .setColor("GREEN")
+            .addField("Latence du WebSocket:", `${pingWebSocket}ms`)
+            .addField("Latence de l'API:", `${pingAPI}ms`)
+            .setTimestamp()
+        m.edit(EditPingEmbed);
+    }).catch(console.error);
 }
 
 module.exports.help = {
