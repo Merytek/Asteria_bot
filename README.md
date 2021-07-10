@@ -1,4 +1,7 @@
 # Asteria bot
+
+![js](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+
 ### Description du Bot
 
 Ce bot a été créé pour **mon serveur**, qui est lui aussi en cours de build. Il possède plusieurs commandes, de la simple commande "fun" à la commande "Admin". Il est développé en Full JS via l'API [Discord.js](https://discord.js.org/#/) j'essaye d'ajouter des commandes régulièrement comme vous l'avez remarqué ou non. Le bot est sous la licence ***MIT***, de ce fait vous avez le droit de vous resservir des commandes des fichiers etc tant que vous me citez dans votre README.
@@ -160,16 +163,22 @@ _Explication des commandes_:
 
 ### Dépendances Utilisé
 
-- discord.js
-- discord.js-pagination
-- mongoose
-- mongodb
-- fs
-- snekfetch 
-- ytdl-core 
-- humanize-duration
-- moment
-- valid-url
+Nom de la dépendance | version | utilisé
+---------------------|---------|--------
+Canvas | 2.8.0 | ❌
+Discord-buttons | 3.1.1 | ❌
+Discord.js | 12.5.3 | ✔️
+Discord.js-pagination | 1.0.3 | ❌
+fs | 0.0.1-security | ✔️
+humanize-duration | 3.24.0 | ❌
+moment | 2.29.1 | ✔️
+mongodb | 3.6.5 | ✔️
+mongoose | 5.12.1 | ✔️
+ping-wrapper | 0.0.3 | ❌
+snekfetch | 4.0.4 | ✔️
+valid-url | 1..9 | ✔️
+xml2json | 0.12.0 | ❌
+
 
 ### Autres Informations 
 
@@ -191,7 +200,7 @@ _Explication des commandes_:
 
 Version actuelle du projet: **v.1.2.0**
 
-***Projet:***
+### Projet:
 
 - [ ] Créer le système d'économie
 - [x] Créer le système d'Xp
@@ -202,4 +211,6 @@ Version actuelle du projet: **v.1.2.0**
 - [x] Ajouter la prise en charge **complète** des Alias
 - [x] Faire la commande help
 - [ ] Ajouter des Achievements secret
-- [x] embellir le [message.js](https://github.com/Merytek/Asteria_bot/tree/main/event/client/message.js)
+- [x] Embellir le [message.js](https://github.com/Merytek/Asteria_bot/tree/main/event/client/message.js)
+- [ ] Ajouter une commande de Giveaway
+- [ ] Ajouter des commandes pour ajouter / retirer de l'Xp
