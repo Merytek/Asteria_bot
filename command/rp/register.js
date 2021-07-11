@@ -1,11 +1,13 @@
 const { MessageEmbed } = require("discord.js");
+const moment = require("moment");
 
 module.exports.run = async (Root, message, args) => {
 
     const settings = await Root.getCharacter(message.member);
 
-    let Brackets = message.content.slice(message.content.indexOf(args[1], message.content.indexOf('register' || 'reg') + args[0].length + 1)).trim().split('text');
     let Name = args[0];
+    let alias = args[1];
+    let pos = args[2];
 
     async function characterCreation() {
         await Root.createCharacter({
@@ -14,7 +16,9 @@ module.exports.run = async (Root, message, args) => {
             userID: message.author.id,
             username: message.author.tag,
             name: Name,
-            bracket: Brackets
+            alias: alias,
+            start: pos,
+            timestamp: moment().format("LLLL")
         });
 
 
@@ -22,36 +26,42 @@ module.exports.run = async (Root, message, args) => {
 
             .setColor("#AE55AF")
             .setTitle("Ton personnnage a été créé avec succès")
-            .setDescription(`ton personnage: "${Name}" a été enregistré avec le bracket: "${Brackets}"`)
+            .setDescription(`ton personnage: "${Name}" a été enregistré`)
             .setFooter("un nouveau personnage a été enregistré")
             .setTimestamp()
 
         message.channel.send(CharEmbed)
     }
 
-    if (settings) {
-        if (Brackets.toString() == settings.bracket.toString()) {
-            message.channel.send("tu as déjà un personnage enregistré avec ce Bracket")
+    if (Name) {
+        if (pos == "start") {
+            pos = true;
         } else {
-            if (Brackets.toString() != "$" || Brackets.toString() != ".") {
-                if (settings.name != Name) {
-                    characterCreation();
-                } else message.channel.send("tu as déjà un personnage possédant ce nom là");
-
-            } else message.channel.send("Alors oui mais non si vous mettez mon prefix ou celui de mon pote comme bracket on va exploser")
+            if (pos == "end") {
+                pos = false;
+            }
         }
-    } else {
-        if (Brackets.toString() != "$" || Brackets.toString() != ".") {
-            characterCreation()
-        } else message.channel.send("Alors oui mais non si vous mettez mon prefix ou celui de mon pote comme bracket on va exploser");
-    }
+        if (alias === "$" || alias === ".") {
+            message.channel.send("Alors non tu ne vas pas mettre cet alias il est résrvé >:O")
+        } else {
+            if (settings) {
+                if (settings.name != Name || alias != settings.alias) {
+                    characterCreation();
+                } else message.channel.send("tu as déjà un personnage possédant ce nom ou cet alias");
+            } else characterCreation();
+        }
+
+    } else message.channel.send("Il faut que tu renseignes un nom de personnage")
+
+
 }
+
 
 module.exports.help = {
     name: 'register',
     alias: ["reg"],
     categorie: "rp",
     description: "permet de register son personnage dans la DB du serveur",
-    usage: "$register <name> <bracket::text>",
+    usage: "$register <name> [alias]",
     permission: null
 }

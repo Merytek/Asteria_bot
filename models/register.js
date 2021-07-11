@@ -11,15 +11,25 @@ const userSchema = mongoose.Schema({
         "default": null
     },
 
-    bracket: {
-        "type": Array,
-        "default": null
-    },
-
     avatar: {
         "type": String,
         "default": null
-    }
+    },
+
+    alias: {
+        "type": String,
+        "default": null
+    },
+    
+    start: {
+        "type": Boolean,
+        "default": true
+    },
+
+    timestamp: {
+        "type": String,
+        "default": null
+    },
     
 });
 

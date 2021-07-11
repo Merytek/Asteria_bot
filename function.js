@@ -35,14 +35,32 @@ module.exports = Root => {
         else return;
     }
 
+    Root.getCharacterByAlias = async (user, aliases) => {
+        const data = await Register.findOne({ userID: user.id, alias: aliases })
+        if (data) return data;
+        else return;
+    }
+
     Root.getCharacterByName = async (user, character_name) => {
         const data = await Register.findOne({ name: character_name, userID: user.id });
         if (data) return data;
         else return;
     }
 
+    Root.getObjectId = async (user, id) => {
+        const data = await Register.findOne({ userID: user.id, _id: id});
+        if (data) return data;
+        else return;
+    }
+
     Root.getCharacters = async user => {
         const data = await Register.find({ userID: user.id });
+        if (data) return data;
+        else return;
+    }
+
+    Root.getAllCharactersByName = async characterName => {
+        const data = await Register.find( { name: characterName });
         if (data) return data;
         else return;
     }
@@ -66,9 +84,8 @@ module.exports = Root => {
         await Root.updateCharacter(user, characterName, { name: newName });
     }
 
-    Root.updateBracket = async (user, characterName, character_bracket) => {
-        const newBracket = character_bracket;
-        await Root.updateCharacter(user, characterName, { bracket: newBracket });
+    Root.updateTimeStamp = async (user, characterName, time) => {
+        await Root.updateCharacter(user, characterName, { timestamp: time })
     }
 
     Root.removeChar = async (user, character_name) => {
@@ -77,6 +94,8 @@ module.exports = Root => {
 
     Root.removeUser = async user => {
         await User.findOneAndDelete({ userID: user.id});
+        await Achievement.findOneAndDelete({ userID: user.id });
+        await Register.deleteMany({ userID: user.id });
     }
 
     Root.updateXp = async (Root, member, xp) => {

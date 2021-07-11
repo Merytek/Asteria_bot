@@ -25,7 +25,8 @@ module.exports = async (Root) => {
                         "déconstruire les legos d'Antte",
                         "Voler la RAM de Bleiz ruz",
                         "Ajouter des fausses notes dans les musiques de Ghost",
-                        "Modifier le nom des variables des codes d'Aether"]; //les divers statut du bot
+                        "Modifier le nom des variables des codes d'Aether",
+                        "Hacker la NSA avec un pendule"]; //les divers statut du bot
 
     console.log(`connecté en tant que: ${Root.user.tag}`)
     Root.user.setStatus("dnd");

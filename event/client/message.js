@@ -1,6 +1,7 @@
 const { PREFIX } = require("../../config.json");
 const { MessageEmbed } = require("discord.js");
 const { User } = require("../../models");
+const moment = require("moment");
 
 module.exports = async (Root, message) => {
 
@@ -22,7 +23,7 @@ module.exports = async (Root, message) => {
             message.channel.send("Je suis Asteria Bot le bot développé par Aether pour ce serveur si tu veux connaitre mes commande utilise la commande : `$help`");
         } else {
             const dbUser = await Root.getUser(message.member);
-            const settings = await Root.getCharacters(message.member);
+            const account = await Root.getCharacter(message.member);
             const userAchievement = await Root.getUserAchievement(message.member);
 
             if (message.content.startsWith(PREFIX)) {
@@ -32,22 +33,42 @@ module.exports = async (Root, message) => {
                 const command = Root.commands.get(commandName) || Root.commands.find(cmd => cmd.help.alias && cmd.help.alias.includes(commandName));
                 if (command) command.run(Root, message, args, dbUser);
                 else message.channel.send("désolé cette commande n'existe pas regarde la commande `$help` pour connaitre toute les commandes");
-            } /*else {
-                if (settings) {
-                    settings.forEach(chr => {
-                        if (message.content.startsWith(chr.bracket.toString().split(",")[0])) {
-                            const MessageContent = message.content.slice(chr.bracket.length).split(/ +/)
-                            message.delete().then(async m => {
-                                await m.channel.createWebhook("Lorem Ipsum").then(async wb => {
-                                    wb.edit({ username: settings.name, avatarURL: settings.avatar }).then(async hk => {
-                                        await hk.send(MessageContent).then(console.log).catch(console.error);
-                                    }).catch(console.error);
-                                }).catch(console.error);
-                            })
-                        }
-                    });
-                }
-            }*/
+            } else {
+                if (account) {
+                    let charName = message.content.split(" ");
+                    const settings = await Root.getCharacterByName(message.member, charName[0]);
+                    const altCall = await Root.getCharacterByAlias(message.member, charName[0]);
+                    if (settings) {
+                        if (settings.name) {
+                            message.delete();   
+                            let MessageContent = message.content.split(" ");
+                        message.channel.createWebhook(settings.name, {
+                            avatar: settings.avatar
+                        })
+                        .then(wb => { 
+                            Root.updateTimeStamp(message.member, wb.name, moment().format("LLLL"));
+                            return wb.send(message.content.slice(MessageContent[0].length)).then(message => wb);
+                        })
+                        .then(wb => wb.delete()).catch(console.error)
+                        } else return;
+                    } else {
+                        if (altCall) {
+                            if (altCall.name) {
+                                message.delete();   
+                            let MessageContent = message.content.split(" ");
+                        message.channel.createWebhook(altCall.name, {
+                            avatar: altCall.avatar
+                        })
+                        .then(wb => { 
+                            Root.updateTimeStamp(message.member, wb.name, moment().format("LLLL"));
+                            return wb.send(message.content.slice(MessageContent[0].length)).then(message => wb);
+                        })
+                        .then(wb => wb.delete()).catch(console.error)
+                            } else return;
+                        } else return;
+                    }
+                } else return;
+            }
 
             const BannedDiscordLink = new RegExp(/https(:)\/\/discord.gg\/[a-zA-Z0-9]+/g);
             const BannedYoutubeLink = new RegExp(/https(:)\/\/www.youtube.com\/watch+/g)

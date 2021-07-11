@@ -32,5 +32,6 @@ module.exports.help = {
     alias: ["l"],
     categorie: "rp",
     description: "Permet de voir la liste des personnage que vous avez créé",
+    usage: "$liste",
     permission: null
 }

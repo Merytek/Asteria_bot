@@ -55,7 +55,7 @@ module.exports.run = async (Root, message, args) => {
 
 module.exports.help = {
     name: "rank",
-    alias: ["rank"],
+    alias: null,
     categorie: "xp",
     description: "Permet de voir le nombre d'Xp d'un utilisateur",
     permission: null

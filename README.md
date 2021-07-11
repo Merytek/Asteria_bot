@@ -206,7 +206,7 @@ Version actuelle du projet: **v.1.2.0**
 - [x] Créer le système d'Xp
 - [ ] Ajouter une commande de classement d'Xp
 - [x] Ajouter un système de webhooks dans les commandes Rp
-- [ ] Ajouter la commande Unban
+- [x] Ajouter la commande Unban
 - [ ] Faire un système d'auto-rôle par réaction
 - [x] Ajouter la prise en charge **complète** des Alias
 - [x] Faire la commande help
