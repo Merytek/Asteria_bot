@@ -11,7 +11,10 @@ module.exports.run = async (Root, message, args) => {
             .setColor("#65AB0F")
             .setTitle(`Voici la liste de tous tes personnages ${message.author.username}`)
         settings.forEach(option => {
-            ListEmbed.addField(`info du personnage: ${option.name}`, `bracket: ${option.bracket}`);
+            let alias;
+            if (option.alias != null) alias = option.alias 
+            else alias = "aucun Alias";
+            ListEmbed.addField(`info du personnage: ${option.name}`, `alias: ${alias}`);
         });
 
         message.channel.send(ListEmbed);

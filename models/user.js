@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
     },
     pos: {
         "type": Number,
-        "default": 8
+        "default": 6
     }
 });
 

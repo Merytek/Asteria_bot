@@ -20,11 +20,6 @@ const userSchema = mongoose.Schema({
         "type": String,
         "default": null
     },
-    
-    start: {
-        "type": Boolean,
-        "default": true
-    },
 
     timestamp: {
         "type": String,

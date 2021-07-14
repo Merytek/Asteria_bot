@@ -7,7 +7,6 @@ module.exports.run = async (Root, message, args) => {
 
     let Name = args[0];
     let alias = args[1];
-    let pos = args[2];
 
     async function characterCreation() {
         await Root.createCharacter({
@@ -17,7 +16,6 @@ module.exports.run = async (Root, message, args) => {
             username: message.author.tag,
             name: Name,
             alias: alias,
-            start: pos,
             timestamp: moment().format("LLLL")
         });
 
@@ -34,13 +32,6 @@ module.exports.run = async (Root, message, args) => {
     }
 
     if (Name) {
-        if (pos == "start") {
-            pos = true;
-        } else {
-            if (pos == "end") {
-                pos = false;
-            }
-        }
         if (alias === "$" || alias === ".") {
             message.channel.send("Alors non tu ne vas pas mettre cet alias il est résrvé >:O")
         } else {
