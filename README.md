@@ -15,10 +15,13 @@ Voici la liste et l'explication des commandes [Admin](https://github.com/Merytek
 _Liste des commandes_:
 
 - [eval](https://github.com/Merytek/Asteria_bot/blob/main/command/Admin/eval.js)
+- [forceremove](https://github.com/Merytek/Asteria_bot/blob/main/command/Admin/forceremove.js)
 
 _Explication des commandes_:
 
-eval: Cette commande permet de simuler du JS depuis le serveur, elle ne peut être utilisée que par moi, elle me permet par exemple de tester les events. Elle s'utilise comme ceci => `$eval <Client.emit("eventName", arguments)>`
+**eval**: Cette commande permet de simuler du JS depuis le serveur, elle ne peut être utilisée que par moi, elle me permet par exemple de tester les events. Elle s'utilise comme ceci => `$eval <Client.emit("eventName", arguments)>`
+
+**forceremove**: Cette commande permet de forcer la suppression d'un personnage d'une personne qui en aurait abusé et refuserait de le supprimer. Elle s'utilise comme ceci => `$forceremove  <user> <character_name>` cependant character_name peut être remplacé par l'id du model du personnage
 
 #### Fun:
 
@@ -35,6 +38,7 @@ _Liste des commandes_:
 - [joke](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/joke.js)
 - [kiss](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/kiss.js)
 - [lovecalc](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/lovecalc.js)
+- [pat](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/pat.js)
 - [punch](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/punch.js)
 - [say](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/say.js)
 - [shoot](https://github.com/Merytek/Asteria_bot/tree/main/command/Fun/shoot.js)
@@ -61,6 +65,8 @@ _Explication des commandes_:
 **kiss**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup). => `$kiss [user]`
 
 **lovecalc**: Calcule le taux d'amour entre 2 personnes. Il existe des bornes dans le programme, si vous tombez dedans, vous avez un certain message. => `$lovecalc <first_args> <second_args>`
+
+**pat**: Envoie un gif de pat random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup). => `$pat [user]`
 
 **punch**: Envoie un gif random venant de l'API [Tenor](https://tenor.com/gifapi/documentation#quickstart-setup) => `$punch [user]`
 
@@ -105,6 +111,8 @@ _Liste des commandes_:
 - [kick](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/kick.js)
 - [mute](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/mute.js)
 - [purge](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/purge.js)
+- [target](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/target.js)
+- [unban](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/unban.js)
 - [unmute](https://github.com/Merytek/Asteria_bot/tree/main/command/Mod/unmute.js)
 
 _Explication des commandes_:
@@ -116,6 +124,16 @@ _Explication des commandes_:
 **mute**: Mute un utilisateur sur le serveur en lui ajoutant un rôle **muted** => `$mute <user> [reason]`
 
 **purge**: Clear les messages d'un salon, capable de supprimer entre 2 et 100 messages d'un coup => `$purge <int>`
+
+**target**: Récupère dans la DB des informations concernant un personnage en particulier ou sur les personnages que possède un utilisateur. Cette commande a plusieurs syntaxe dépendant de ce que vous cherchez :
+
+Syntaxe de la commande | Effet 
+-----------------------|---------
+`$target <user>` | renvoies tous les personnage d'un utilisateur
+`$target <character_name>` | renvoies tous les utilisateurs ayant ce personnage ainsi que les informations qu'il y ont lié
+`$target <user> <character_name>` | renvoies les informations que l'utilisateur a rentré sur un certain personnage
+
+**unban**: Permet d'unban un utilisateur. => `$unban <userID>`
 
 **unmute**: Unmute un utilisateur en lui retirant le rôle **muted** et ne nécessite pas de raison pour être utilisée. => `$unmute <user>`
 
@@ -141,13 +159,13 @@ _Explication des commandes_:
 
 **picture**: Change l'image du personnage enregistré dans la DB => `$picture <Name> <URL | MessageAttachment>` 
 
-**register**: Permet d'enregistrer un personnage dans la DB qui pourra être utilisé plus tard => `$register <name> <bracket::text>`
+**register**: Permet d'enregistrer un personnage dans la DB qui pourra être utilisé plus tard => `$register <name> <alias>`
 
 **remove**: Permet de supprimer un personnage enregistré de la DB => `$remove <character_name>` 
 
-**roll**: Lancé de dés => `$roll <int>`
+**roll**: Lancé de dés qui inclue un système de buff/debuff => `$roll <int> [{+|-} int]`
 
-**settings**: Cette commande sert à modifier les informations d'un personnage enregistré par l'utilisateur => `$settings <"bracket" | "name"> <character_name> <new character_bracket | new character_name>`
+**settings**: Cette commande sert à modifier les informations d'un personnage enregistré par l'utilisateur => `$settings <"alias" | "name"> <character_name> <new character_alias | new character_name>`
 
 #### Xp:
 
