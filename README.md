@@ -195,10 +195,11 @@ xml2json | 0.12.0 | ❌
 - [v.0.9.0](https://github.com/Merytek/Asteria_bot/releases/tag/v0.9.0)
 - [v.1.0.0](https://github.com/Merytek/Asteria_bot/releases/tag/v1.0.0)
 - [v.1.1.0](https://github.com/Merytek/Asteria_bot/releases/tag/v.1.1.0)
+- [v.1.2.0](https://github.com/Merytek/Asteria_bot/releases/tag/v.1.2.0)
 
 **Version actuelle**:
 
-Version actuelle du projet: **v.1.2.0**
+Version actuelle du projet: **v.1.3.0**
 
 ### Projet:
 

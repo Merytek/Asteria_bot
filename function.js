@@ -84,6 +84,10 @@ module.exports = Root => {
         await Root.updateCharacter(user, characterName, { name: newName });
     }
 
+    Root.updateAlias = async (user, characterName, newAlias) => {
+        await Root.updateCharacter(user, characterName, { alias: newAlias });
+    }
+
     Root.updateTimeStamp = async (user, characterName, time) => {
         await Root.updateCharacter(user, characterName, { timestamp: time })
     }
